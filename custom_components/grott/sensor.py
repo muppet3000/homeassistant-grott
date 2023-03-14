@@ -118,7 +118,7 @@ class GrottSensorUpdateGroup:
 class GrottSensor(SensorEntity):
     """Representation of a sensor that is updated via MQTT."""
 
-    def __init__(self, device_id, name, icon, device_class, unit_of_measurement, state_class, func, divider = None, entity_category = None, ignore_zero_values = False) -> None:
+    def __init__(self, device_id, name, icon, device_class, unit_of_measurement = None, state_class = None, func = None, divider = None, entity_category = None, ignore_zero_values = False, options = None) -> None:
         """Initialize the sensor."""
         self._device_id = device_id
         self._ignore_zero_values = ignore_zero_values
@@ -129,6 +129,7 @@ class GrottSensor(SensorEntity):
         self._attr_native_unit_of_measurement = unit_of_measurement
         self._attr_state_class = state_class
         self._attr_entity_category = entity_category
+        self._attr_options = options
         self._attr_should_poll = False
         
         self._func = func        

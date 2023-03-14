@@ -9,6 +9,7 @@ from homeassistant.const import (
     UnitOfEnergy,
     UnitOfFrequency,
     UnitOfPower,
+    UnitOfTemperature,
     UnitOfTime,
 )
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
@@ -298,7 +299,7 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:thermometer",
-    "func": lambda js: js['values']["pvemperature"], #TODO - This is spelt incorrectly on the grott MQTT
+    "func": lambda js: js['values']["pvtemperature"],
     "divider": 10
   },
   {
@@ -351,20 +352,32 @@ SENSORS = [
     "divider": 10
   },
 
+  #TODO - Find a more elegant way of implementing the 'function'
   {
     "name": "Battery type",
     "device_class": SensorDeviceClass.ENUM,
-    "options": ['Lead-acid','Lithium']
+    "options": ['Lead-acid','Lithium','Unknown'],
 #    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
 #    "state_class": SensorStateClass.MEASUREMENT,
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:solar-power",
-    "func": lambda js: js['values']["eacharge_today"],
-    "divider": 1
+    "func": lambda js: 'Lead-acid' if str(js['values']["batterytype"]) == '0' else ('Lithium' if str(js['values']["batterytype"]) == '1' else 'Unknown'),
   },
 
+  """
+  TODO - Add all of these
+  -  uwsysworkmode        :  6
+  -  systemfaultword0     :  0
+  -  systemfaultword1     :  0
+  -  systemfaultword2     :  0
+  -  systemfaultword3     :  0
+  -  systemfaultword4     :  32
+  -  systemfaultword5     :  0
+  -  systemfaultword6     :  0
+  -  systemfaultword7     :  2048
+  """
 
-
+  
 
 
   {
