@@ -14,6 +14,16 @@ from homeassistant.const import (
 )
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
 
+from .const import (
+    BATTERY_TYPES
+)
+
+def battery_type_lookup(mqtt_data):
+  batt_type=mqtt_data['values']['batterytype']
+  if batt_type > 1:
+    batt_type = 2
+  return BATTERY_TYPES[int(batt_type)]
+
 SENSORS = [
   {
     "name": "PV Serial",
@@ -352,30 +362,27 @@ SENSORS = [
     "divider": 10
   },
 
-  #TODO - Find a more elegant way of implementing the 'function'
   {
     "name": "Battery type",
     "device_class": SensorDeviceClass.ENUM,
-    "options": ['Lead-acid','Lithium','Unknown'],
-#    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
-#    "state_class": SensorStateClass.MEASUREMENT,
+    "options": BATTERY_TYPES,
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:solar-power",
-    "func": lambda js: 'Lead-acid' if str(js['values']["batterytype"]) == '0' else ('Lithium' if str(js['values']["batterytype"]) == '1' else 'Unknown'),
+    "func": battery_type_lookup
   },
 
-  """
-  TODO - Add all of these
-  -  uwsysworkmode        :  6
-  -  systemfaultword0     :  0
-  -  systemfaultword1     :  0
-  -  systemfaultword2     :  0
-  -  systemfaultword3     :  0
-  -  systemfaultword4     :  32
-  -  systemfaultword5     :  0
-  -  systemfaultword6     :  0
-  -  systemfaultword7     :  2048
-  """
+#  """
+#  TODO - Add all of these
+#  -  uwsysworkmode        :  6
+#  -  systemfaultword0     :  0
+#  -  systemfaultword1     :  0
+#  -  systemfaultword2     :  0
+#  -  systemfaultword3     :  0
+#  -  systemfaultword4     :  32
+#  -  systemfaultword5     :  0
+#  -  systemfaultword6     :  0
+#  -  systemfaultword7     :  2048
+#  """
 
   
 
