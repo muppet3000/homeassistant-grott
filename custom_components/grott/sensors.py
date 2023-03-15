@@ -229,7 +229,7 @@ SENSORS = [
   },
  
   {
-    "name": "Today - Generated Energy (eactoday) ???",
+    "name": "Generated Energy (eactoday) ??? - Today",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -238,7 +238,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Today - Generated Energy (pvenergytoday) ???",
+    "name": "Generated Energy (pvenergytoday) ??? - Today",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -247,7 +247,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - Generated Energy (eactotal) ???",
+    "name": "Generated Energy (eactotal) ??? - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -257,7 +257,7 @@ SENSORS = [
   },
 
   {
-    "name": "Today - PV1 Energy",
+    "name": "PV1 Energy - Today",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -266,7 +266,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - PV1 Energy",
+    "name": "PV1 Energy - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -275,7 +275,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Today - PV2 Energy",
+    "name": "PV2 Energy - Today",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -284,7 +284,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - PV2 Energy",
+    "name": "PV2 Energy - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -293,7 +293,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - All PV Energy (epvtotal)???",
+    "name": "All PV Energy (epvtotal)??? - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -344,7 +344,7 @@ SENSORS = [
   },
 
   {
-    "name": "Today - AC Charge Energy",
+    "name": "AC Charge Energy - Today",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -353,7 +353,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - AC Charge Energy",
+    "name": "AC Charge Energy - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -577,14 +577,14 @@ SENSORS = [
     "device_class": SensorDeviceClass.VOLTAGE,
     "unit_of_measurement": UnitOfElectricPotential.VOLT,
     "state_class": SensorStateClass.MEASUREMENT,
-    "entity_category": EntityCategory.DIAGNOSTIC
+    "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["spbusvolt"],
     "divider": 10
   },
 
   {
-    "name": "Today - Import from Grid Energy",
+    "name": "Import from Grid Energy - Today",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -593,7 +593,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - Import from Grid Energy",
+    "name": "Import from Grid Energy - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -602,7 +602,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Today - Export to Grid Energy",
+    "name": "Export to Grid Energy - Today",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -611,7 +611,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - Export to Grid Energy",
+    "name": "Export to Grid Energy - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -621,7 +621,7 @@ SENSORS = [
   },
 
   {
-    "name": "Today - Battery Discharged Energy",
+    "name": "Battery Discharged Energy - Today",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -630,7 +630,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - Battery Discharged Energy",
+    "name": "Battery Discharged Energy - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -640,7 +640,7 @@ SENSORS = [
   },
 
   {
-    "name": "Today - Battery Charged Energy",
+    "name": "Battery Charged Energy - Today",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -649,7 +649,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - Battery Charged Energy",
+    "name": "Battery Charged Energy - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -659,7 +659,7 @@ SENSORS = [
   },
 
   {
-    "name": "Today - Load Consumption Energy",
+    "name": "Load Consumption Energy - Today",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -668,7 +668,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - Load Consumption Energy",
+    "name": "Load Consumption Energy - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
