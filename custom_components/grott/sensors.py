@@ -218,7 +218,7 @@ SENSORS = [
   },
 
   {
-    "name": "Time since commissioned",
+    "name": "Time Since Commissioned",
     "device_class": SensorDeviceClass.DURATION,
     "unit_of_measurement": UnitOfTime.HOURS,
     "state_class": SensorStateClass.TOTAL,
@@ -229,7 +229,7 @@ SENSORS = [
   },
  
   {
-    "name": "Today - Generated energy (eactoday) ???",
+    "name": "Today - Generated Energy (eactoday) ???",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -238,7 +238,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Today - Generated energy (pvenergytoday) ???",
+    "name": "Today - Generated Energy (pvenergytoday) ???",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -247,7 +247,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - Generated energy (eactotal) ???",
+    "name": "Total - Generated Energy (eactotal) ???",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -257,7 +257,7 @@ SENSORS = [
   },
 
   {
-    "name": "Today - PV1 energy",
+    "name": "Today - PV1 Energy",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -266,7 +266,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - PV1 energy",
+    "name": "Total - PV1 Energy",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -275,7 +275,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Today - PV2 energy",
+    "name": "Today - PV2 Energy",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -284,7 +284,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - PV2 energy",
+    "name": "Total - PV2 Energy",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -293,7 +293,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - All PV energy (epvtotal)???",
+    "name": "Total - All PV Energy (epvtotal)???",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -303,7 +303,7 @@ SENSORS = [
   },
 
   {
-    "name": "Inverter temperature",
+    "name": "Inverter Temperature",
     "device_class": SensorDeviceClass.TEMPERATURE,
     "unit_of_measurement": UnitOfTemperature.CELSIUS,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -313,7 +313,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "IPM temperature",
+    "name": "IPM Temperature",
     "device_class": SensorDeviceClass.TEMPERATURE,
     "unit_of_measurement": UnitOfTemperature.CELSIUS,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -323,7 +323,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Boost temperature",
+    "name": "Boost Temperature",
     "device_class": SensorDeviceClass.TEMPERATURE,
     "unit_of_measurement": UnitOfTemperature.CELSIUS,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -344,7 +344,7 @@ SENSORS = [
   },
 
   {
-    "name": "Today - AC Charge energy",
+    "name": "Today - AC Charge Energy",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -353,7 +353,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Total - AC Charge energy",
+    "name": "Total - AC Charge Energy",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -363,32 +363,138 @@ SENSORS = [
   },
 
   {
-    "name": "Battery type",
+    "name": "Battery Type",
     "device_class": SensorDeviceClass.ENUM,
     "options": BATTERY_TYPES,
     "entity_category": EntityCategory.DIAGNOSTIC,
-    "icon": "mdi:solar-power",
+    "icon": "mdi:information-outline",
     "func": battery_type_lookup
   },
 
-#  """
-#  TODO - Add all of these
-#  -  uwsysworkmode        :  6
-#  -  systemfaultword0     :  0
-#  -  systemfaultword1     :  0
-#  -  systemfaultword2     :  0
-#  -  systemfaultword3     :  0
-#  -  systemfaultword4     :  32
-#  -  systemfaultword5     :  0
-#  -  systemfaultword6     :  0
-#  -  systemfaultword7     :  2048
-#  """
-
-  
+  #TODO - Convert to an ENUM
+  #0x00:waiting module 
+  #0x01: Self-test mode,
+  #      optional
+  #0x02: Reserved
+  #0x03：SysFault module 
+  #0x04: Flash module
+  #0x05：PVBATOnline module, 
+  #0x06：BatOnline module 
+  #0x07：PVOfflineMode module, 
+  #0x08：BatOfflineMode module,
+  {
+    "name": "System Work Mode",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "entity_category": EntityCategory.DIAGNOSTIC,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["uwsysworkmode"],
+  },
 
 
   {
-    "name": "Statement of charge",
+    "name": "System Fault Word 0",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "entity_category": EntityCategory.DIAGNOSTIC,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["systemfaultword0"],
+  },
+  {
+    "name": "System Fault Word 1",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "entity_category": EntityCategory.DIAGNOSTIC,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["systemfaultword1"],
+  },
+  {
+    "name": "System Fault Word 2",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "entity_category": EntityCategory.DIAGNOSTIC,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["systemfaultword2"],
+  },
+  {
+    "name": "System Fault Word 3",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "entity_category": EntityCategory.DIAGNOSTIC,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["systemfaultword3"],
+  },
+  {
+    "name": "System Fault Word 4",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "entity_category": EntityCategory.DIAGNOSTIC,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["systemfaultword4"],
+  },
+  {
+    "name": "System Fault Word 5",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "entity_category": EntityCategory.DIAGNOSTIC,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["systemfaultword5"],
+  },
+  {
+    "name": "System Fault Word 6",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "entity_category": EntityCategory.DIAGNOSTIC,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["systemfaultword6"],
+  },
+  {
+    "name": "System Fault Word 7",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "entity_category": EntityCategory.DIAGNOSTIC,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["systemfaultword7"],
+  },
+
+  {
+    "name": "Battery Discharging Power",
+    "device_class": SensorDeviceClass.POWER,
+    "unit_of_measurement": UnitOfPower.WATT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:battery-arrow-down",
+    "func": lambda js: js['values']["pdischarge1"],
+    "divider": 10
+  },
+  {
+    "name": "Battery Charging Power",
+    "device_class": SensorDeviceClass.POWER,
+    "unit_of_measurement": UnitOfPower.WATT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:battery-arrow-up",
+    "func": lambda js: js['values']["p1charge1"],
+    "divider": 10
+  },
+  {
+    "name": "Battery Voltage",
+    "device_class": SensorDeviceClass.VOLTAGE,
+    "unit_of_measurement": UnitOfElectricPotential.VOLT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:home-battery",
+    "func": lambda js: js['values']["vbat"],
+    "divider": 10
+  },
+  {
+    "name": "Statement of Charge",
     "device_class": SensorDeviceClass.BATTERY,
     "unit_of_measurement": PERCENTAGE,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -397,18 +503,179 @@ SENSORS = [
     "divider": 1
   },
 
-
-
   {
-    "name": "Load Consumption",
+    "name": "Import from Grid Power",
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
-    "icon": "mdi:flash",
+    "icon": "mdi:home-import-outline",
+    "func": lambda js: js['values']["pactouserr"],
+    "divider": 10
+  },
+#  {
+#    "name": "Import from Grid Power - All",
+#    "device_class": SensorDeviceClass.POWER,
+#    "unit_of_measurement": UnitOfPower.WATT,
+#    "state_class": SensorStateClass.MEASUREMENT,
+#    "icon": "mdi:home-import-outline",
+#    "func": lambda js: js['values']["pactousertot"],
+#    "divider": 10
+#  },
+
+  {
+    "name": "Export to Grid Power",
+    "device_class": SensorDeviceClass.POWER,
+    "unit_of_measurement": UnitOfPower.WATT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:home-export-outline",
+    "func": lambda js: js['values']["pactogridr"],
+    "divider": 10
+  },
+#  {
+#    "name": "Export to Grid Power - All",
+#    "device_class": SensorDeviceClass.POWER,
+#    "unit_of_measurement": UnitOfPower.WATT,
+#    "state_class": SensorStateClass.MEASUREMENT,
+#    "icon": "mdi:home-export-outline",
+#    "func": lambda js: js['values']["pactogridtot"],
+#    "divider": 10
+#  },
+
+  {
+    "name": "Load Consumption Power",
+    "device_class": SensorDeviceClass.POWER,
+    "unit_of_measurement": UnitOfPower.WATT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:home-lightning-bolt",
     "func": lambda js: js['values']["plocaloadr"],
     "divider": 10
   },
+#  {
+#    "name": "Load Consumption Power - All",
+#    "device_class": SensorDeviceClass.POWER,
+#    "unit_of_measurement": UnitOfPower.WATT,
+#    "state_class": SensorStateClass.MEASUREMENT,
+#    "icon": "mdi:home-lightning-bolt",
+#    "func": lambda js: js['values']["plocaloadtot"],
+#    "divider": 10
+#  },
 
+
+  #TODO - This might be an enum
+  {
+    "name": "SP State",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "entity_category": EntityCategory.DIAGNOSTIC,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["spdspstatus"],
+  },
+
+  {
+    "name": "SP Bus Voltage",
+    "device_class": SensorDeviceClass.VOLTAGE,
+    "unit_of_measurement": UnitOfElectricPotential.VOLT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "entity_category": EntityCategory.DIAGNOSTIC
+    "icon": "mdi:flash",
+    "func": lambda js: js['values']["spbusvolt"],
+    "divider": 10
+  },
+
+  {
+    "name": "Today - Import from Grid Energy",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
+    "icon": "mdi:home-import-outline",
+    "func": lambda js: js['values']["etouser_tod"],
+    "divider": 10
+  },
+  {
+    "name": "Total - Import from Grid Energy",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL,
+    "icon": "mdi:home-import-outline",
+    "func": lambda js: js['values']["etouser_tot"],
+    "divider": 10
+  },
+  {
+    "name": "Today - Export to Grid Energy",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
+    "icon": "mdi:home-export-outline",
+    "func": lambda js: js['values']["etogrid_tod"],
+    "divider": 10
+  },
+  {
+    "name": "Total - Export to Grid Energy",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL,
+    "icon": "mdi:home-import-outline",
+    "func": lambda js: js['values']["etogrid_tot"],
+    "divider": 10
+  },
+
+  {
+    "name": "Today - Battery Discharged Energy",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
+    "icon": "mdi:battery-arrow-down",
+    "func": lambda js: js['values']["edischarge1_tod"],
+    "divider": 10
+  },
+  {
+    "name": "Total - Battery Discharged Energy",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL,
+    "icon": "mdi:battery-arrow-down",
+    "func": lambda js: js['values']["edischarge1_tot"],
+    "divider": 10
+  },
+
+  {
+    "name": "Today - Battery Charged Energy",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
+    "icon": "mdi:battery-arrow-up",
+    "func": lambda js: js['values']["eharge1_tod"],
+    "divider": 10
+  },
+  {
+    "name": "Total - Battery Charged Energy",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL,
+    "icon": "mdi:battery-arrow-up",
+    "func": lambda js: js['values']["eharge1_tot"],
+    "divider": 10
+  },
+
+  {
+    "name": "Today - Load Consumption Energy",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
+    "icon": "mdi:battery-arrow-up",
+    "func": lambda js: js['values']["elocalload_tod"],
+    "divider": 10
+  },
+  {
+    "name": "Total - Load Consumption Energy",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL,
+    "icon": "mdi:battery-arrow-up",
+    "func": lambda js: js['values']["elocalload_tot"],
+    "divider": 10
+  },
 ]
 
 
