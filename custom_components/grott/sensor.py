@@ -55,7 +55,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         device_id = payload["device"]
 #       device_id = topic.split("/")[1]
         if (device == '+' or device_id == device):
-            update_groups = await async_get_device_groups(device_update_groups, async_add_entities, device_id)
+            update_groups = await async_get_device_groups(device_update_groups, async_add_entities, device_id, message)
 #            _LOGGER.debug("Received message: %s", topic)
 #            _LOGGER.debug("  Payload: %s", payload)
             for update_group in update_groups:
@@ -74,12 +74,12 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 
 
-async def async_get_device_groups(device_update_groups, async_add_entities, device_id):
+async def async_get_device_groups(device_update_groups, async_add_entities, device_id, message):
     #Add to update groups if not already there
     if device_id not in device_update_groups:
         _LOGGER.debug("New device found: %s", device_id)
         groups = [
-            GrottSensorUpdateGroup(device_id, SENSORS_MQTT),
+            GrottSensorUpdateGroup(device_id, SENSORS_MQTT, message),
         ]
         async_add_entities(
             [sensorEntity for updateGroup in groups for sensorEntity in updateGroup.all_sensors],
@@ -93,10 +93,17 @@ async def async_get_device_groups(device_update_groups, async_add_entities, devi
 class GrottSensorUpdateGroup:
     """Representation of Grott Sensors that all get updated together."""
 
-    def __init__(self, device_id: str, sensors: Iterable) -> None:
+    def __init__(self, device_id: str, sensors: Iterable, message) -> None:
         """Initialize the sensor collection."""
         self._device_id = device_id
-        self._sensors = [GrottSensor(device_id = device_id, **sensor) for sensor in sensors]
+        self._sensors = []
+        payload = json.loads(message.payload)
+        for sensor in sensors:
+          try:
+            value = sensor['func'](payload)
+            self._sensors.append(GrottSensor(device_id = device_id, **sensor))
+          except KeyError:
+            _LOGGER.debug("Key Error when attempting to create %s sensor (key may not exist for this system type)", sensor['name'])
 
     def process_update(self, message: ReceiveMessage) -> None:
         """Process an update from the MQTT broker."""
@@ -106,7 +113,7 @@ class GrottSensorUpdateGroup:
             _LOGGER.debug("Matched on %s", self._device_id)
             #for value in payload['values']: 
             #    _LOGGER.debug(value)
-#            parsed_data = json.loads(payload)
+            #parsed_data = json.loads(payload)
             for sensor in self._sensors:
                 sensor.process_update(payload)
 

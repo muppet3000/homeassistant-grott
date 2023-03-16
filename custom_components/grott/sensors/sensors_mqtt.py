@@ -14,7 +14,7 @@ from homeassistant.const import (
 )
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
 
-from grott.const import (
+from ..const import (
     BATTERY_TYPES
 )
 
@@ -677,5 +677,4 @@ SENSORS_MQTT = [
     "divider": 10
   },
 ]
-
 
