@@ -15,7 +15,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
 from .const import DOMAIN
-from .sensors import SENSORS
+from .sensors.sensors_mqtt import SENSORS_MQTT
 from homeassistant.const import (
     CONF_DEVICE_ID,
     ATTR_DEVICE_ID,
@@ -79,7 +79,7 @@ async def async_get_device_groups(device_update_groups, async_add_entities, devi
     if device_id not in device_update_groups:
         _LOGGER.debug("New device found: %s", device_id)
         groups = [
-            GrottSensorUpdateGroup(device_id, SENSORS),
+            GrottSensorUpdateGroup(device_id, SENSORS_MQTT),
         ]
         async_add_entities(
             [sensorEntity for updateGroup in groups for sensorEntity in updateGroup.all_sensors],

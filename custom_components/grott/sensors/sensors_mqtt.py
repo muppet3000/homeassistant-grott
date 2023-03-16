@@ -1,4 +1,4 @@
-"""Sensor descriptions for Growatt systems."""
+"""Sensor descriptions for Growatt systems - Raw MQTT values."""
 
 from __future__ import annotations
 from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
@@ -14,7 +14,7 @@ from homeassistant.const import (
 )
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
 
-from .const import (
+from grott.const import (
     BATTERY_TYPES
 )
 
@@ -24,7 +24,7 @@ def battery_type_lookup(mqtt_data):
     batt_type = 2
   return BATTERY_TYPES[int(batt_type)]
 
-SENSORS = [
+SENSORS_MQTT = [
   {
     "name": "PV Serial",
     "device_class": None,
@@ -663,7 +663,7 @@ SENSORS = [
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
-    "icon": "mdi:battery-arrow-up",
+    "icon": "mdi:home-lightning-bolt",
     "func": lambda js: js['values']["elocalload_tod"],
     "divider": 10
   },
@@ -672,7 +672,7 @@ SENSORS = [
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
-    "icon": "mdi:battery-arrow-up",
+    "icon": "mdi:home-lightning-bolt",
     "func": lambda js: js['values']["elocalload_tot"],
     "divider": 10
   },
