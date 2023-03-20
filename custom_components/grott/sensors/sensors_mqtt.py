@@ -53,7 +53,7 @@ SENSORS_MQTT = [
     "func": lambda js: js['values']["pvstatus"],
   },
   {
-    "name": "PV Power - All",
+    "name": "PV-All Power",
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -293,7 +293,7 @@ SENSORS_MQTT = [
     "divider": 10
   },
   {
-    "name": "All PV Energy (epvtotal)??? - Total",
+    "name": "PV-All Energy - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -344,20 +344,20 @@ SENSORS_MQTT = [
   },
 
   {
-    "name": "AC Charge Energy - Today",
+    "name": "Battery AC Charge Energy - Today",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
-    "icon": "mdi:solar-power",
+    "icon": "mdi:battery-arrow-up",
     "func": lambda js: js['values']["eacharge_today"],
     "divider": 10
   },
   {
-    "name": "AC Charge Energy - Total",
+    "name": "Battery AC Charge Energy - Total",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
-    "icon": "mdi:solar-power",
+    "icon": "mdi:battery-arrow-up",
     "func": lambda js: js['values']["eacharge_total"],
     "divider": 10
   },
