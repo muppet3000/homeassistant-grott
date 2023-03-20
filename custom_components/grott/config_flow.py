@@ -21,9 +21,13 @@ class GrottConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """Handle the initial step."""
         errors = {}
         if user_input is None:
-            return self.async_show_form(
-                step_id="user", data_schema=vol.Schema({vol.Required(CONF_DEVICE_ID, default='+'):str}), errors=errors
+            data_schema = vol.Schema(
+              {
+                vol.Required(CONF_DEVICE_ID, default='+'):str,
+                vol.Required("calc_values", default=False):bool,
+              }
             )
+            return self.async_show_form(step_id="user", data_schema=data_schema, errors=errors)
 
         device_id = user_input[CONF_DEVICE_ID]
 
@@ -54,5 +58,10 @@ class GrottOptionsFlowHandler(config_entries.OptionsFlow):
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
 
-        data_schema=vol.Schema({vol.Required(CONF_DEVICE_ID, default=self.config_entry.options.get(CONF_DEVICE_ID, "+")):str})
+        data_schema=vol.Schema(
+          {
+            vol.Required(CONF_DEVICE_ID, default=self.config_entry.options.get(CONF_DEVICE_ID, "+")):str,
+            vol.Required("calc_values", default=self.config_entry.options.get("calc_values", False)):bool,
+          }
+        )
         return self.async_show_form(step_id="user", data_schema=data_schema)
