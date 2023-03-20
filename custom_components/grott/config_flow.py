@@ -1,4 +1,5 @@
 """Config flow for Grott."""
+from __future__ import annotations
 import logging
 
 import voluptuous as vol
@@ -34,9 +35,7 @@ class GrottConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         await self.async_set_unique_id('{}_{}'.format(DOMAIN, device_id))
         self._abort_if_unique_id_configured()
 
-        return self.async_create_entry(
-            title="",
-            data={CONF_DEVICE_ID: device_id})
+        return self.async_create_entry(title="",data=user_input)
 
 
     @staticmethod
@@ -53,7 +52,9 @@ class GrottOptionsFlowHandler(config_entries.OptionsFlow):
         """Initialize options flow."""
         self.config_entry = config_entry
 
-    async def async_step_init(self, user_input=None):
+    async def async_step_init(
+        self, user_input: dict[str, Any] | None = None
+    ) -> FlowResult:
         """Handle options flow."""
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
@@ -64,4 +65,4 @@ class GrottOptionsFlowHandler(config_entries.OptionsFlow):
             vol.Required("calc_values", default=self.config_entry.options.get("calc_values", False)):bool,
           }
         )
-        return self.async_show_form(step_id="user", data_schema=data_schema)
+        return self.async_show_form(step_id="init", data_schema=data_schema)

@@ -13,7 +13,8 @@
       "user": {
         "description": "Configuring Grott.",
         "data": {
-          "device_id": "Device Id (leave as + to auto-detect all devices on your MQTT)"
+          "device_id": "Device Id (leave as + to auto-detect all devices on your MQTT)",
+          "calc_values": "Calculate additional values from raw MQTT values"
         },
         "title": "Grott"
       }
@@ -21,10 +22,11 @@
   },
   "options": {
     "step": {
-      "user": {
+      "init": {
         "description": "Configuring Grott.",
         "data": {
-          "device_id": "Device Id (leave as + to auto-detect all devices on your MQTT)"
+          "device_id": "Device Id (leave as + to auto-detect all devices on your MQTT)",
+          "calc_values": "Calculate additional values from raw MQTT values"
         },
         "title": "Grott"
       }

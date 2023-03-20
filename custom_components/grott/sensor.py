@@ -24,17 +24,10 @@ from homeassistant.core import callback
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.util import slugify
 
-_LOGGER = logging.getLogger(__name__)
+_LOGGER = logging.getLogger(__name__)    
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up the Grott sensors."""
-
-    # the config is defaulted to + which happens to mean we will subscribe to all devices
-    device = hass.data[DOMAIN][config_entry.entry_id][CONF_DEVICE_ID]
-    conf_calc_values = hass.data[DOMAIN][config_entry.entry_id]["calc_values"]
-
-    _LOGGER.debug("Including calculated values: %s", conf_calc_values)
-
     device_update_groups = {}
 
     @callback
@@ -55,6 +48,15 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 #        for thing in payload:
 #            _LOGGER.debug(thing)
+
+        # Get the configuration for what device to get data for (defaults to + which means we will subscribe to all devices)
+        device = hass.data[DOMAIN][config_entry.entry_id][CONF_DEVICE_ID]
+        _LOGGER.debug("Looking for device: %s (+ means all)", device)
+
+        # Get the configuration for whether to include calculated values too
+        conf_calc_values = hass.data[DOMAIN][config_entry.entry_id]["calc_values"]
+        _LOGGER.debug("Including calculated values: %s", conf_calc_values)
+
         device_id = payload["device"]
 #       device_id = topic.split("/")[1]
         if (device == '+' or device_id == device):
