@@ -14,7 +14,7 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
-from .const import DOMAIN
+from .const import DOMAIN, CONF_CALC_VALUES
 from .sensors.sensors_mqtt import SENSORS_MQTT
 from homeassistant.const import (
     CONF_DEVICE_ID,
@@ -54,7 +54,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         _LOGGER.debug("Looking for device: %s (+ means all)", device)
 
         # Get the configuration for whether to include calculated values too
-        conf_calc_values = hass.data[DOMAIN][config_entry.entry_id]["calc_values"]
+        conf_calc_values = hass.data[DOMAIN][config_entry.entry_id][CONF_CALC_VALUES]
         _LOGGER.debug("Including calculated values: %s", conf_calc_values)
 
         device_id = payload["device"]

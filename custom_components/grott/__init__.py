@@ -8,6 +8,7 @@ from homeassistant.const import (
 from homeassistant.core import HomeAssistant
 
 from .const import(
+    CONF_CALC_VALUES,
     DOMAIN,
 )
 
@@ -35,8 +36,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     hass.data[DOMAIN][entry.entry_id][CONF_DEVICE_ID] = entry.data[CONF_DEVICE_ID].strip().upper().replace(":", "").replace(" ", "")
     _LOGGER.debug("Target device: %s", hass.data[DOMAIN][entry.entry_id][CONF_DEVICE_ID])
 
-    hass.data[DOMAIN][entry.entry_id]["calc_values"] = entry.data["calc_values"]
-    _LOGGER.debug("Include calculated values: %s", hass.data[DOMAIN][entry.entry_id]["calc_values"])
+    hass.data[DOMAIN][entry.entry_id][CONF_CALC_VALUES] = entry.data[CONF_CALC_VALUES]
+    _LOGGER.debug("Include calculated values: %s", hass.data[DOMAIN][entry.entry_id][CONF_CALC_VALUES])
 
     for component in PLATFORMS:
         hass.async_create_task(
@@ -52,6 +53,6 @@ async def async_update_listener(hass: HomeAssistant, entry: ConfigEntry):
     """Handle options update."""
     _LOGGER.debug("Updated options receieved: %s", entry.options)
     hass.data[DOMAIN][entry.entry_id][CONF_DEVICE_ID] = entry.options[CONF_DEVICE_ID].strip().upper().replace(":", "").replace(" ", "")
-    hass.data[DOMAIN][entry.entry_id]["calc_values"] = entry.options["calc_values"]
+    hass.data[DOMAIN][entry.entry_id][CONF_CALC_VALUES] = entry.options[CONF_CALC_VALUES]
     hass.config_entries.async_update_entry(entry, data=entry.options)
     _LOGGER.debug("Finished handling updated options")

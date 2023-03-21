@@ -8,7 +8,7 @@ from homeassistant import config_entries
 from homeassistant.const import CONF_DEVICE_ID
 from homeassistant.core import callback
 
-from .const import DOMAIN
+from .const import DOMAIN, CONF_CALC_VALUES
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ class GrottConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             data_schema = vol.Schema(
               {
                 vol.Required(CONF_DEVICE_ID, default='+'):str,
-                vol.Required("calc_values", default=False):bool,
+                vol.Required(CONF_CALC_VALUES, default=False):bool,
               }
             )
             return self.async_show_form(step_id="user", data_schema=data_schema, errors=errors)
@@ -62,7 +62,7 @@ class GrottOptionsFlowHandler(config_entries.OptionsFlow):
         data_schema=vol.Schema(
           {
             vol.Required(CONF_DEVICE_ID, default=self.config_entry.options.get(CONF_DEVICE_ID, "+")):str,
-            vol.Required("calc_values", default=self.config_entry.options.get("calc_values", False)):bool,
+            vol.Required(CONF_CALC_VALUES, default=self.config_entry.options.get(CONF_CALC_VALUES, False)):bool,
           }
         )
         return self.async_show_form(step_id="init", data_schema=data_schema)
