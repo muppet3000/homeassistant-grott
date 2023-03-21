@@ -29,6 +29,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     if entry.entry_id not in hass.data[DOMAIN]:
         hass.data[DOMAIN][entry.entry_id] = {}
 
+    _LOGGER.debug("Entry data: %s", entry.data)
+    _LOGGER.debug("Entry options: %s", entry.options)
+
     hass.data[DOMAIN][entry.entry_id][CONF_DEVICE_ID] = entry.data[CONF_DEVICE_ID].strip().upper().replace(":", "").replace(" ", "")
     _LOGGER.debug("Target device: %s", hass.data[DOMAIN][entry.entry_id][CONF_DEVICE_ID])
 
@@ -50,4 +53,5 @@ async def async_update_listener(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug("Updated options receieved: %s", entry.options)
     hass.data[DOMAIN][entry.entry_id][CONF_DEVICE_ID] = entry.options[CONF_DEVICE_ID].strip().upper().replace(":", "").replace(" ", "")
     hass.data[DOMAIN][entry.entry_id]["calc_values"] = entry.options["calc_values"]
+    hass.config_entries.async_update_entry(entry, data=entry.options)
     _LOGGER.debug("Finished handling updated options")
