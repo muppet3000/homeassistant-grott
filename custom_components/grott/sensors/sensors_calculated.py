@@ -14,9 +14,11 @@ from homeassistant.const import (
 )
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
 
-SENSORS_CALCULATED = [
+SENSORS_LABEL="calculated_sensors"
+
+SENSORS = [
   {
-    "name": "PV-All Energy - Today",
+    "name": "PV-All Energy - Today (Calculated)",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,

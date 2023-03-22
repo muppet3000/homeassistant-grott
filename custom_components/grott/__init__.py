@@ -1,5 +1,6 @@
 """The grott component."""
 import logging
+import asyncio
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
@@ -33,11 +34,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug("Entry data: %s", entry.data)
     _LOGGER.debug("Entry options: %s", entry.options)
 
-    hass.data[DOMAIN][entry.entry_id][CONF_DEVICE_ID] = entry.data[CONF_DEVICE_ID].strip().upper().replace(":", "").replace(" ", "")
-    _LOGGER.debug("Target device: %s", hass.data[DOMAIN][entry.entry_id][CONF_DEVICE_ID])
+    #if entry.options:
+    #    hass.data[DOMAIN][entry.entry_id].update(entry.options)
 
-    hass.data[DOMAIN][entry.entry_id][CONF_CALC_VALUES] = entry.data[CONF_CALC_VALUES]
-    _LOGGER.debug("Include calculated values: %s", hass.data[DOMAIN][entry.entry_id][CONF_CALC_VALUES])
+    #hass_data_entry=hass.data[DOMAIN][entry.entry_id]
+    #hass_data_entry[CONF_DEVICE_ID] = entry.data[CONF_DEVICE_ID].strip().upper().replace(":", "").replace(" ", "")
+    #_LOGGER.debug("Target device: %s", hass_data_entry[CONF_DEVICE_ID])
+
+    #hass_data_entry[CONF_CALC_VALUES] = entry.data[CONF_CALC_VALUES]
+    #_LOGGER.debug("Include calculated values: %s", hass_data_entry[CONF_CALC_VALUES])
 
     for component in PLATFORMS:
         hass.async_create_task(
@@ -51,8 +56,31 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 async def async_update_listener(hass: HomeAssistant, entry: ConfigEntry):
     """Handle options update."""
-    _LOGGER.debug("Updated options receieved: %s", entry.options)
-    hass.data[DOMAIN][entry.entry_id][CONF_DEVICE_ID] = entry.options[CONF_DEVICE_ID].strip().upper().replace(":", "").replace(" ", "")
-    hass.data[DOMAIN][entry.entry_id][CONF_CALC_VALUES] = entry.options[CONF_CALC_VALUES]
-    hass.config_entries.async_update_entry(entry, data=entry.options)
-    _LOGGER.debug("Finished handling updated options")
+    _LOGGER.debug("Updated options receieved: %s, reloading component", entry.options)
+    _LOGGER.debug("Finished handling updated options, reloading...")
+    await hass.config_entries.async_reload(entry.entry_id)
+
+
+async def async_unload_entry(
+    hass: HomeAssistant, entry: ConfigEntry
+) -> bool:
+    """Unload a config entry."""
+    _LOGGER.debug("Unloading...")
+    unload_ok = all(
+        await asyncio.gather(
+            *[hass.config_entries.async_forward_entry_unload(entry, "sensor")]
+        )
+    )
+
+    hass_data = hass.data[DOMAIN]
+    # Remove options_update_listener.
+    if hass_data[entry.entry_id].get("unsub_mqtt_listener", False):
+        _LOGGER.debug("MQTT listener unsub function found, calling it to unsubscribe")
+        hass.data[DOMAIN][entry.entry_id]["unsub_mqtt_listener"]()
+
+    # Remove config entry from domain.
+    if unload_ok:
+        hass_data.pop(entry.entry_id)
+    _LOGGER.debug("Unloading complete")
+
+    return unload_ok

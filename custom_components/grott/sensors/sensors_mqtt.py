@@ -24,7 +24,9 @@ def battery_type_lookup(mqtt_data):
     batt_type = 2
   return BATTERY_TYPES[int(batt_type)]
 
-SENSORS_MQTT = [
+SENSORS_LABEL="raw_mqtt_sensors"
+
+SENSORS = [
   {
     "name": "PV Serial",
     "device_class": None,

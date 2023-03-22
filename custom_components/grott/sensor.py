@@ -15,7 +15,10 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
 from .const import DOMAIN, CONF_CALC_VALUES
-from .sensors.sensors_mqtt import SENSORS_MQTT
+from .sensors import (
+    sensors_calculated,
+    sensors_mqtt,
+)
 from homeassistant.const import (
     CONF_DEVICE_ID,
     ATTR_DEVICE_ID,
@@ -26,9 +29,22 @@ from homeassistant.util import slugify
 
 _LOGGER = logging.getLogger(__name__)    
 
+"""Example MQTT message"""
+#home-assistant-test    | 2023-03-01 21:32:34.534 DEBUG (MainThread) [custom_components.grott.sensor] Received message: energy/growatt
+#home-assistant-test    | 2023-03-01 21:32:34.535 DEBUG (MainThread) [custom_components.grott.sensor]   Payload: {"device": "NWCPA47006", "time": "2023-03-01T21:32:34", "buffered": "no", "values": {"datalogserial": "NAC3915162", "pvserial": "NWCPA47006", "pvstatus": 6, "pvpowerin": 0, "pv1voltage": 123, "pv1current": 0, "pv1watt": 1, "pv2voltage": 0, "pv2current": 0, "pv2watt": 0, "pvpowerout": 0, "pvfrequentie": 5000, "pvgridvoltage": 2464, "pvgridcurrent": 15, "pvgridpower": 0, "pvgridvoltage2": 0, "pvgridcurrent2": 0, "pvgridpower2": 0, "pvgridvoltage3": 0, "pvgridcurrent3": 0, "pvgridpower3": 0, "totworktime": 111688551, "eactoday": 120, "pvenergytoday": 120, "eactotal": 138743, "epvtotal": 107934, "epv1today": 25, "epv1total": 60803, "epv2today": 16, "epv2total": 32732, "pvtemperature": 232, "pvipmtemperature": 223, "pvboosttemp": 213, "bat_dsp": 522, "eacharge_today": 95, "eacharge_total": 46348, "batterytype": 1, "uwsysworkmode": 6, "systemfaultword0": 0, "systemfaultword1": 0, "systemfaultword2": 0, "systemfaultword3": 0, "systemfaultword4": 32, "systemfaultword5": 0, "systemfaultword6": 0, "systemfaultword7": 2048, "pdischarge1": 0, "p1charge1": 0, "vbat": 519, "SOC": 11, "pactouserr": 12707, "pactousertot": 12707, "pactogridr": 0, "pactogridtot": 0, "plocaloadr": 12700, "plocaloadtot": 12700, "spdspstatus": 6, "spbusvolt": 2957, "etouser_tod": 206, "etouser_tot": 115836, "etogrid_tod": 2, "etogrid_tot": 297107, "edischarge1_tod": 101, "edischarge1_tot": 67936, "eharge1_tod": 88, "eharge1_tot": 63816, "elocalload_tod": 260, "elocalload_tot": 4294898079}}
+
+
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up the Grott sensors."""
     device_update_groups = {}
+    _LOGGER.debug("Configuring sensor using config data & options")
+
+    hass_data_entry=hass.data[DOMAIN][config_entry.entry_id]
+    if config_entry.options:
+        hass_data_entry.update(config_entry.options)
+
+    _LOGGER.debug("Configured to look for device: %s (+ means all)", hass_data_entry[CONF_DEVICE_ID])
+    _LOGGER.debug("Configured to include calculated values: %s", hass_data_entry[CONF_CALC_VALUES])
 
     @callback
     async def mqtt_message_received(message: ReceiveMessage):
@@ -38,54 +54,42 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         _LOGGER.debug("Received message: %s", topic)
         _LOGGER.debug("  Payload: %s", payload)
 
-
-#home-assistant-test    | 2023-03-01 21:32:34.534 DEBUG (MainThread) [custom_components.grott.sensor] Received message: energy/growatt
-#home-assistant-test    | 2023-03-01 21:32:34.535 DEBUG (MainThread) [custom_components.grott.sensor]   Payload: {"device": "NWCPA47006", "time": "2023-03-01T21:32:34", "buffered": "no", "values": {"datalogserial": "NAC3915162", "pvserial": "NWCPA47006", "pvstatus": 6, "pvpowerin": 0, "pv1voltage": 123, "pv1current": 0, "pv1watt": 1, "pv2voltage": 0, "pv2current": 0, "pv2watt": 0, "pvpowerout": 0, "pvfrequentie": 5000, "pvgridvoltage": 2464, "pvgridcurrent": 15, "pvgridpower": 0, "pvgridvoltage2": 0, "pvgridcurrent2": 0, "pvgridpower2": 0, "pvgridvoltage3": 0, "pvgridcurrent3": 0, "pvgridpower3": 0, "totworktime": 111688551, "eactoday": 120, "pvenergytoday": 120, "eactotal": 138743, "epvtotal": 107934, "epv1today": 25, "epv1total": 60803, "epv2today": 16, "epv2total": 32732, "pvtemperature": 232, "pvipmtemperature": 223, "pvboosttemp": 213, "bat_dsp": 522, "eacharge_today": 95, "eacharge_total": 46348, "batterytype": 1, "uwsysworkmode": 6, "systemfaultword0": 0, "systemfaultword1": 0, "systemfaultword2": 0, "systemfaultword3": 0, "systemfaultword4": 32, "systemfaultword5": 0, "systemfaultword6": 0, "systemfaultword7": 2048, "pdischarge1": 0, "p1charge1": 0, "vbat": 519, "SOC": 11, "pactouserr": 12707, "pactousertot": 12707, "pactogridr": 0, "pactogridtot": 0, "plocaloadr": 12700, "plocaloadtot": 12700, "spdspstatus": 6, "spbusvolt": 2957, "etouser_tod": 206, "etouser_tot": 115836, "etogrid_tod": 2, "etogrid_tot": 297107, "edischarge1_tod": 101, "edischarge1_tot": 67936, "eharge1_tod": 88, "eharge1_tot": 63816, "elocalload_tod": 260, "elocalload_tot": 4294898079}}
-
-
-#{"device": "NWCPA47006", "time": "2023-03-01T21:30:32", "buffered": "no", "values": {"datalogserial": "NAC3915162", "pvserial": "NWCPA47006", "pvstatus": 6, "pvpowerin": 0, "pv1voltage": 118, "pv1current": 0, "pv1watt": 1, "pv2voltage": 0, "pv2current": 0, "pv2watt": 0, "pvpowerout": 0, "pvfrequentie": 5002, "pvgridvoltage": 2462, "pvgridcurrent": 15, "pvgridpower": 0, "pvgridvoltage2": 0, "pvgridcurrent2": 0, "pvgridpower2": 0, "pvgridvoltage3": 0, "pvgridcurrent3": 0, "pvgridpower3": 0, "totworktime": 111688278, "eactoday": 120, "pvenergytoday": 120, "eactotal": 138743, "epvtotal": 107934, "epv1today": 25, "epv1total": 60803, "epv2today": 16, "epv2total": 32732, "pvtemperature": 234, "pvipmtemperature": 225, "pvboosttemp": 214, "bat_dsp": 521, "eacharge_today": 95, "eacharge_total": 46348, "batterytype": 1, "uwsysworkmode": 6, "systemfaultword0": 0, "systemfaultword1": 0, "systemfaultword2": 0, "systemfaultword3": 0, "systemfaultword4": 32, "systemfaultword5": 0, "systemfaultword6": 0, "systemfaultword7": 2048, "pdischarge1": 0, "p1charge1": 0, "vbat": 518, "SOC": 11, "pactouserr": 12462, "pactousertot": 12462, "pactogridr": 0, "pactogridtot": 0, "plocaloadr": 12400, "plocaloadtot": 12400, "spdspstatus": 6, "spbusvolt": 2953, "etouser_tod": 206, "etouser_tot": 115836, "etogrid_tod": 2, "etogrid_tot": 297107, "edischarge1_tod": 101, "edischarge1_tot": 67936, "eharge1_tod": 88, "eharge1_tot": 63816, "elocalload_tod": 260, "elocalload_tot": 4294898079}}
-
-
-#        for thing in payload:
-#            _LOGGER.debug(thing)
-
         # Get the configuration for what device to get data for (defaults to + which means we will subscribe to all devices)
-        device = hass.data[DOMAIN][config_entry.entry_id][CONF_DEVICE_ID]
+        device = hass_data_entry[CONF_DEVICE_ID]
         _LOGGER.debug("Looking for device: %s (+ means all)", device)
 
         # Get the configuration for whether to include calculated values too
-        conf_calc_values = hass.data[DOMAIN][config_entry.entry_id][CONF_CALC_VALUES]
+        conf_calc_values = hass_data_entry[CONF_CALC_VALUES]
         _LOGGER.debug("Including calculated values: %s", conf_calc_values)
 
         device_id = payload["device"]
-#       device_id = topic.split("/")[1]
         if (device == '+' or device_id == device):
-            update_groups = await async_get_device_groups(device_update_groups, async_add_entities, device_id, message)
-#            _LOGGER.debug("Received message: %s", topic)
-#            _LOGGER.debug("  Payload: %s", payload)
+            update_groups = await async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, message)
             for update_group in update_groups:
                 update_group.process_update(message)
 
 
-
-
-
-
     data_topic = "energy/growatt/#"
 
-    await mqtt.async_subscribe(
+    hass.data[DOMAIN][config_entry.entry_id]["unsub_mqtt_listener"] = await mqtt.async_subscribe(
         hass, data_topic, mqtt_message_received, 1
     ) 
 
 
-
-async def async_get_device_groups(device_update_groups, async_add_entities, device_id, message):
+async def async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, message):
     #Add to update groups if not already there
     if device_id not in device_update_groups:
         _LOGGER.debug("New device found: %s", device_id)
         groups = [
-            GrottSensorUpdateGroup(device_id, SENSORS_MQTT, message),
+            GrottSensorUpdateGroup(sensors_mqtt.SENSORS_LABEL, device_id, sensors_mqtt.SENSORS, message),
         ]
+
+        #Only use calculated values if the user has chosen to
+        if conf_calc_values:
+            groups.append(
+                GrottSensorUpdateGroup(sensors_calculated.SENSORS_LABEL, device_id, sensors_calculated.SENSORS, message),
+            )
+
         async_add_entities(
             [sensorEntity for updateGroup in groups for sensorEntity in updateGroup.all_sensors],
             #True
@@ -94,19 +98,19 @@ async def async_get_device_groups(device_update_groups, async_add_entities, devi
 
     return device_update_groups[device_id]
   
-
 class GrottSensorUpdateGroup:
     """Representation of Grott Sensors that all get updated together."""
 
-    def __init__(self, device_id: str, sensors: Iterable, message) -> None:
+    def __init__(self, group_label: str, device_id: str, sensors: Iterable, message) -> None:
         """Initialize the sensor collection."""
+        self._group_label = group_label
         self._device_id = device_id
         self._sensors = []
         payload = json.loads(message.payload)
         for sensor in sensors:
           try:
             value = sensor['func'](payload)
-            self._sensors.append(GrottSensor(device_id = device_id, **sensor))
+            self._sensors.append(GrottSensor(data_source = group_label, device_id = device_id, **sensor))
           except KeyError:
             _LOGGER.debug("Key Error when attempting to create %s sensor (key may not exist for this system type)", sensor['name'])
 
@@ -115,10 +119,7 @@ class GrottSensorUpdateGroup:
         topic = message.topic
         payload = json.loads(message.payload)
         if (self._device_id == payload['device']):
-            _LOGGER.debug("Matched on %s", self._device_id)
-            #for value in payload['values']: 
-            #    _LOGGER.debug(value)
-            #parsed_data = json.loads(payload)
+            _LOGGER.debug("%s - matched on %s", self._group_label, self._device_id)
             for sensor in self._sensors:
                 sensor.process_update(payload)
 
@@ -130,8 +131,9 @@ class GrottSensorUpdateGroup:
 class GrottSensor(SensorEntity):
     """Representation of a sensor that is updated via MQTT."""
 
-    def __init__(self, device_id, name, icon, device_class, unit_of_measurement = None, state_class = None, func = None, divider = None, entity_category = None, ignore_zero_values = False, options = None) -> None:
+    def __init__(self, data_source, device_id, name, icon, device_class, unit_of_measurement = None, state_class = None, func = None, divider = None, entity_category = None, ignore_zero_values = False, options = None) -> None:
         """Initialize the sensor."""
+        self._data_source = data_source 
         self._device_id = device_id
         self._ignore_zero_values = ignore_zero_values
         self._attr_name = name
@@ -169,4 +171,4 @@ class GrottSensor(SensorEntity):
     @property
     def extra_state_attributes(self):
         """Return the state attributes."""
-        return {ATTR_DEVICE_ID: self._device_id}
+        return {ATTR_DEVICE_ID: self._device_id, "Data Source": self._data_source}
