@@ -21,7 +21,7 @@ SENSORS = [
     "name": "PV-All Energy - Today (Calculated)",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
-    "state_class": SensorStateClass.TOTAL,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["epv1today"] + js['values']['epv2today'],
     "divider": 10
@@ -37,6 +37,48 @@ SENSORS = [
     "divider": 10
   },
 
-  #TODO - More values to add here from Spreadsheet
+  {
+    "name": "Load Consumption Energy (AC) - Today (Calculated)",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
+    "icon": "mdi:home-lightning-bolt",
+    #Import from Grid - Battery AC Charge
+    "func": lambda js: js['values']["etouser_tod"] - js['values']['eacharge_today'],
+    "divider": 10
+  },
+
+  {
+    "name": "Load Consumption Energy (PV) - Today (Calculated)",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
+    "icon": "mdi:home-lightning-bolt",
+    #Load Consumption - Load Consumption AC - Battery Discharged
+    "func": lambda js: js['values']["elocalload_tod"] - (js['values']["etouser_tod"] - js['values']['eacharge_today']) - js['values']['edischarge1_tod'],
+    "divider": 10
+  },
+
+  {
+    "name": "Load Consumption Energy (PV + Battery) - Today (Calculated)",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
+    "icon": "mdi:home-lightning-bolt",
+    #Load Consumption - Load Consumption AC
+    "func": lambda js: js['values']["elocalload_tod"] - (js['values']["etouser_tod"] - js['values']['eacharge_today']),
+    "divider": 10
+  },
+
+  {
+    "name": "System Output (Self-consumption + Export) - Today (Calculated)",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
+    "icon": "mdi:flash",
+    #Load Consumption Energy (PV + Battery) + Export
+    "func": lambda js: js['values']["elocalload_tod"] - (js['values']["etouser_tod"] - js['values']['eacharge_today']) + js['values']["etogrid_tod"],
+    "divider": 10
+  },
 ]
 

@@ -138,7 +138,7 @@ SENSORS = [
   },
 
   {
-    "name": "Grid Voltage (Single/First Phase)",
+    "name": "Inverter Output Voltage (Single/First Phase)",
     "device_class": SensorDeviceClass.VOLTAGE,
     "unit_of_measurement": UnitOfElectricPotential.VOLT,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -147,7 +147,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Grid Current (Single/First Phase)",
+    "name": "Inverter Output Current (Single/First Phase)",
     "device_class": SensorDeviceClass.CURRENT,
     "unit_of_measurement": UnitOfElectricCurrent.AMPERE,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -156,7 +156,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Grid Power??? (Single/First Phase)",
+    "name": "Inverter Output Power (Single/First Phase)",
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -165,7 +165,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Grid Voltage (Second Phase)",
+    "name": "Inverter Output Voltage (Second Phase)",
     "device_class": SensorDeviceClass.VOLTAGE,
     "unit_of_measurement": UnitOfElectricPotential.VOLT,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -174,7 +174,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Grid Current (Second Phase)",
+    "name": "Inverter Output Current (Second Phase)",
     "device_class": SensorDeviceClass.CURRENT,
     "unit_of_measurement": UnitOfElectricCurrent.AMPERE,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -183,7 +183,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Grid Power??? (Second Phase)",
+    "name": "Inverter Output Power (Second Phase)",
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -192,7 +192,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Grid Voltage (Third Phase)",
+    "name": "Inverter Output Voltage (Third Phase)",
     "device_class": SensorDeviceClass.VOLTAGE,
     "unit_of_measurement": UnitOfElectricPotential.VOLT,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -201,7 +201,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Grid Current (Third Phase)",
+    "name": "Inverter Output Current (Third Phase)",
     "device_class": SensorDeviceClass.CURRENT,
     "unit_of_measurement": UnitOfElectricCurrent.AMPERE,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -210,7 +210,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Grid Power??? (Third Phase)",
+    "name": "Inverter Output Power (Third Phase)",
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -231,7 +231,7 @@ SENSORS = [
   },
  
   {
-    "name": "Generated Energy (eactoday) ??? - Today",
+    "name": "Self-Consumption (Solar + Battery) Energy - Today (eactoday)",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -240,7 +240,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Generated Energy (pvenergytoday) ??? - Today",
+    "name": "Self-Consumption (Solar + Battery) Energy - Today (pvenergytoday)",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -249,7 +249,7 @@ SENSORS = [
     "divider": 10
   },
   {
-    "name": "Generated Energy (eactotal) ??? - Total",
+    "name": "Self-Consumption (Solar + Battery) Energy - Total (eactotal)",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
