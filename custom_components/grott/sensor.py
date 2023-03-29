@@ -10,6 +10,7 @@ from homeassistant.components import mqtt
 from homeassistant.components.mqtt.models import ReceiveMessage
 from homeassistant.components.sensor import (
     SensorEntity,
+    SensorEntityDescription,
     SensorDeviceClass,
     SensorStateClass,
 )
@@ -64,9 +65,27 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
         device_id = payload["device"]
         if (device == '+' or device_id == device):
-            update_groups = await async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, message)
+            update_groups = await async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, payload)
             for update_group in update_groups:
-                update_group.process_update(message)
+                update_group.process_update(payload)
+
+        #HACKS START HERE
+        hacked_values={}
+        for key in payload['values']:
+            if isinstance(payload['values'][key], str):
+                hacked_values[key] = payload['values'][key]+"4000"
+            else:
+                hacked_values[key] = payload['values'][key]+4000
+        _LOGGER.debug(hacked_values)
+        payload['values'] = hacked_values
+        payload['device'] = payload["device"] + "-4000"
+        device_id = payload["device"]
+        if (device == '+' or device_id == device):
+            update_groups = await async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, payload)
+            for update_group in update_groups:
+                _LOGGER.debug("Looping update groups")
+                update_group.process_update(payload)
+        #HACKS END HERE
 
 
     data_topic = "energy/growatt/#"
@@ -76,18 +95,18 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     ) 
 
 
-async def async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, message):
+async def async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, payload):
     #Add to update groups if not already there
     if device_id not in device_update_groups:
         _LOGGER.debug("New device found: %s", device_id)
         groups = [
-            GrottSensorUpdateGroup(sensors_mqtt.SENSORS_LABEL, device_id, sensors_mqtt.SENSORS, message),
+            GrottSensorUpdateGroup(sensors_mqtt.SENSORS_LABEL, device_id, sensors_mqtt.SENSORS, payload),
         ]
 
         #Only use calculated values if the user has chosen to
         if conf_calc_values:
             groups.append(
-                GrottSensorUpdateGroup(sensors_calculated.SENSORS_LABEL, device_id, sensors_calculated.SENSORS, message),
+                GrottSensorUpdateGroup(sensors_calculated.SENSORS_LABEL, device_id, sensors_calculated.SENSORS, payload),
             )
 
         async_add_entities(
@@ -101,12 +120,12 @@ async def async_get_device_groups(device_update_groups, async_add_entities, devi
 class GrottSensorUpdateGroup:
     """Representation of Grott Sensors that all get updated together."""
 
-    def __init__(self, group_label: str, device_id: str, sensors: Iterable, message) -> None:
+    def __init__(self, group_label: str, device_id: str, sensors: Iterable, payload) -> None:
         """Initialize the sensor collection."""
         self._group_label = group_label
         self._device_id = device_id
         self._sensors = []
-        payload = json.loads(message.payload)
+        #payload = json.loads(message.payload)
         for sensor in sensors:
           try:
             value = sensor['func'](payload)
@@ -114,10 +133,13 @@ class GrottSensorUpdateGroup:
           except KeyError:
             _LOGGER.debug("Key Error when attempting to create %s sensor (key may not exist for this system type)", sensor['name'])
 
-    def process_update(self, message: ReceiveMessage) -> None:
+    def process_update(self, payload) -> None:
         """Process an update from the MQTT broker."""
-        topic = message.topic
-        payload = json.loads(message.payload)
+        #topic = message.topic
+        #payload = json.loads(message.payload)
+        _LOGGER.debug("PROCESSING UPDATES")
+        _LOGGER.debug("%s sensors for processing", len(self._sensors))
+        _LOGGER.debug("_device_id: %s, payload[device']: %s", self._device_id, payload['device'])
         if (self._device_id == payload['device']):
             _LOGGER.debug("%s - matched on %s", self._group_label, self._device_id)
             for sensor in self._sensors:
@@ -136,14 +158,14 @@ class GrottSensor(SensorEntity):
         self._data_source = data_source 
         self._device_id = device_id
         self._ignore_zero_values = ignore_zero_values
-        self._attr_name = name
+        self._attr_name = f"{device_id} {name}"
         self._attr_unique_id = slugify(device_id + "_" + name)
-        self._attr_icon = icon
-        self._attr_device_class = device_class
-        self._attr_native_unit_of_measurement = unit_of_measurement
-        self._attr_state_class = state_class
-        self._attr_entity_category = entity_category
-        self._attr_options = options
+        #self._attr_icon = icon
+        #self._attr_device_class = device_class
+        #self._attr_native_unit_of_measurement = unit_of_measurement
+        #self._attr_state_class = state_class
+        #self._attr_entity_category = entity_category
+        #self._attr_options = options
         self._attr_should_poll = False
         
         self._func = func        
@@ -153,11 +175,40 @@ class GrottSensor(SensorEntity):
             manufacturer="Growatt",
             model="Grott MQTT",
             name=f"Inverter {device_id}",
+            identifiers={(DOMAIN, device_id)}
         )
         self._attr_native_value = None
 
+        description = SensorEntityDescription(
+            key=slugify(name),
+            name=name,
+            device_class=device_class,
+            #unit_of_measurement = unit_of_measurement,
+            native_unit_of_measurement = unit_of_measurement,
+            state_class = state_class,
+            icon = icon,
+            entity_category = entity_category,
+            options = options
+        )
+        self.entity_description = description
+
+        """
+        {
+           "name": "PV-All Power",
+           "device_class": SensorDeviceClass.POWER,
+           "unit_of_measurement": UnitOfPower.WATT,
+           "state_class": SensorStateClass.MEASUREMENT,
+           "icon": "mdi:solar-power",
+           "func": lambda js: js['values']["pvpowerin"],
+           "divider": 10
+        },
+        """
+
+
+
     def process_update(self, mqtt_data) -> None:
         """Update the state of the sensor."""
+        #_LOGGER.debug("Processing update for: %s, unique id: %s", self._attr_name, self._attr_unique_id)
         new_value = self._func(mqtt_data)
         if self._divider != None:
             new_value = float(new_value)/self._divider
