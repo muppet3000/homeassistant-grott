@@ -174,7 +174,8 @@ class GrottSensor(SensorEntity):
         self._data_source = data_source 
         self._device_id = device_id
         self._ignore_zero_values = ignore_zero_values
-        self._attr_name = f"Inverter {device_id} {name}"
+        self._attr_name = f"{device_id} {name}"
+        #TODO - Change the unique id to be generated based on a unique key, not the name - that way we can change it in the future without breaking history (use the key from the lambda lookup)
         self._attr_unique_id = slugify(device_id + "_" + name)
         #self._attr_icon = icon
         #self._attr_device_class = device_class
@@ -190,7 +191,7 @@ class GrottSensor(SensorEntity):
             connections={("Inverter", device_id)},
             manufacturer="Growatt",
             model="Grott MQTT",
-            name=f"Inverter {device_id}",
+            name=f"{device_id}",
             identifiers={(DOMAIN, device_id)}
         )
         self._attr_native_value = None

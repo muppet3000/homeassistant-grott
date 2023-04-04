@@ -37,7 +37,7 @@ class GrottConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         await self.async_set_unique_id('{}_{}'.format(DOMAIN, device_id))
         self._abort_if_unique_id_configured()
 
-        return self.async_create_entry(title="CONFIG_TITLE",data=user_input)
+        return self.async_create_entry(title="Grott",data=user_input)
 
 
     @staticmethod
@@ -49,7 +49,7 @@ class GrottConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
 
 class GrottOptionsFlowHandler(config_entries.OptionsFlow):
-    """Handle a option flow for GrottMQTT."""
+    """Handle a option flow for Grott."""
 
     def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
         """Initialize options flow."""
