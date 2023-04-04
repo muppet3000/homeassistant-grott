@@ -40,12 +40,21 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     device_update_groups = {}
     _LOGGER.debug("Configuring sensor using config data & options")
 
-    hass_data_entry=hass.data[DOMAIN][config_entry.entry_id]
+    config = {**config_entry.data}
+    _LOGGER.debug("Local config var: %s", config)
+    _LOGGER.debug("Config data: %s", config_entry.data)
+    _LOGGER.debug("Config options: %s", config_entry.options)
+    #hass_data_entry=hass.data[DOMAIN][config_entry.entry_id]
+    #_LOGGER.debug("Local config var: %s", config)
     if config_entry.options:
-        hass_data_entry.update(config_entry.options)
+        _LOGGER.debug("Options found, overwriting config data....")
+        #hass_data_entry.update(config_entry.options)
+        hass.config_entries.async_update_entry(config_entry, data=config_entry.options)
 
-    _LOGGER.debug("Configured to look for device: %s (+ means all)", hass_data_entry[CONF_DEVICE_ID])
-    _LOGGER.debug("Configured to include calculated values: %s", hass_data_entry[CONF_CALC_VALUES])
+    config = {**config_entry.data}
+    _LOGGER.debug("Local config var: %s", config)
+    _LOGGER.debug("Config data: %s", config_entry.data)
+    _LOGGER.debug("Config options: %s", config_entry.options)
 
     @callback
     async def mqtt_message_received(message: ReceiveMessage):
@@ -55,12 +64,19 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         _LOGGER.debug("Received message: %s", topic)
         _LOGGER.debug("  Payload: %s", payload)
 
+        #hass_data_entry=hass.data[DOMAIN][config_entry.entry_id]
+        #_LOGGER.debug("Configured to look for device: %s (+ means all)", hass_data_entry[CONF_DEVICE_ID])
+        #_LOGGER.debug("Configured to include calculated values: %s", hass_data_entry[CONF_CALC_VALUES])
+        _LOGGER.debug("Configured to look for device: %s (+ means all)", config[CONF_DEVICE_ID])
+        _LOGGER.debug("Configured to include calculated values: %s", config[CONF_CALC_VALUES])
+
+
         # Get the configuration for what device to get data for (defaults to + which means we will subscribe to all devices)
-        device = hass_data_entry[CONF_DEVICE_ID]
+        device = config[CONF_DEVICE_ID]
         _LOGGER.debug("Looking for device: %s (+ means all)", device)
 
         # Get the configuration for whether to include calculated values too
-        conf_calc_values = hass_data_entry[CONF_CALC_VALUES]
+        conf_calc_values = config[CONF_CALC_VALUES]
         _LOGGER.debug("Including calculated values: %s", conf_calc_values)
 
         device_id = payload["device"]
@@ -70,21 +86,21 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                 update_group.process_update(payload)
 
         #HACKS START HERE
-        hacked_values={}
-        for key in payload['values']:
-            if isinstance(payload['values'][key], str):
-                hacked_values[key] = payload['values'][key]+"4000"
-            else:
-                hacked_values[key] = payload['values'][key]+4000
-        _LOGGER.debug(hacked_values)
-        payload['values'] = hacked_values
-        payload['device'] = payload["device"] + "-4000"
-        device_id = payload["device"]
-        if (device == '+' or device_id == device):
-            update_groups = await async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, payload)
-            for update_group in update_groups:
-                _LOGGER.debug("Looping update groups")
-                update_group.process_update(payload)
+        #hacked_values={}
+        #for key in payload['values']:
+        #    if isinstance(payload['values'][key], str):
+        #        hacked_values[key] = payload['values'][key]+"4000"
+        #    else:
+        #        hacked_values[key] = payload['values'][key]+4000
+        #_LOGGER.debug(hacked_values)
+        #payload['values'] = hacked_values
+        #payload['device'] = payload["device"] + "-4000"
+        #device_id = payload["device"]
+        #if (device == '+' or device_id == device):
+        #    update_groups = await async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, payload)
+        #    for update_group in update_groups:
+        #        _LOGGER.debug("Looping update groups")
+        #        update_group.process_update(payload)
         #HACKS END HERE
 
 
@@ -158,7 +174,7 @@ class GrottSensor(SensorEntity):
         self._data_source = data_source 
         self._device_id = device_id
         self._ignore_zero_values = ignore_zero_values
-        self._attr_name = f"{device_id} {name}"
+        self._attr_name = f"Inverter {device_id} {name}"
         self._attr_unique_id = slugify(device_id + "_" + name)
         #self._attr_icon = icon
         #self._attr_device_class = device_class

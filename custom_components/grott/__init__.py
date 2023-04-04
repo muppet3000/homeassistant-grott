@@ -5,6 +5,7 @@ import asyncio
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
     CONF_DEVICE_ID,
+    Platform
 )
 from homeassistant.core import HomeAssistant
 
@@ -15,7 +16,7 @@ from .const import(
 
 _LOGGER = logging.getLogger(__name__)
 
-PLATFORMS = ["sensor"]
+PLATFORMS = [Platform.SENSOR]
 
 async def async_setup(hass: HomeAssistant, config: dict):
     """Set up the Grott integration."""
@@ -44,9 +45,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     #hass_data_entry[CONF_CALC_VALUES] = entry.data[CONF_CALC_VALUES]
     #_LOGGER.debug("Include calculated values: %s", hass_data_entry[CONF_CALC_VALUES])
 
-    for component in PLATFORMS:
-        hass.async_create_task(
-            hass.config_entries.async_forward_entry_setup(entry, component))
+    #for component in PLATFORMS:
+    #    hass.async_create_task(
+    #        hass.config_entries.async_forward_entry_setup(entry, component))
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
 
     entry.async_on_unload(entry.add_update_listener(async_update_listener))
 
@@ -66,16 +68,18 @@ async def async_unload_entry(
 ) -> bool:
     """Unload a config entry."""
     _LOGGER.debug("Unloading...")
-    unload_ok = all(
-        await asyncio.gather(
-            *[hass.config_entries.async_forward_entry_unload(entry, "sensor")]
-        )
-    )
+    #unload_ok = all(
+    #    await asyncio.gather(
+    #        *[hass.config_entries.async_forward_entry_unload(entry, "sensor")]
+    #    )
+    #)
+    unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
 
     hass_data = hass.data[DOMAIN]
     # Remove options_update_listener.
     if hass_data[entry.entry_id].get("unsub_mqtt_listener", False):
         _LOGGER.debug("MQTT listener unsub function found, calling it to unsubscribe")
+        #TODO - See if this can be done using hass_data variable
         hass.data[DOMAIN][entry.entry_id]["unsub_mqtt_listener"]()
 
     # Remove config entry from domain.
