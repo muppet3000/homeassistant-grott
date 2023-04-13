@@ -35,6 +35,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["pvserial"],
+    "unique_name": "mqtt_001",
   },
   {
     "name": "Datalog Serial",
@@ -44,6 +45,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["datalogserial"],
+    "unique_name": "mqtt_002",
   },
   {
     "name": "PV Status",
@@ -53,6 +55,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["pvstatus"],
+    "unique_name": "mqtt_003",
   },
   {
     "name": "PV-All Power",
@@ -61,7 +64,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["pvpowerin"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_004",
   },
   {
     "name": "PV1 Voltage",
@@ -70,7 +74,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["pv1voltage"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_005",
   },
   {
     "name": "PV1 Current",
@@ -79,7 +84,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["pv1current"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_006",
   },
   {
     "name": "PV1 Power",
@@ -88,7 +94,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["pv1watt"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_007",
   },
   {
     "name": "PV2 Voltage",
@@ -97,7 +104,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["pv2voltage"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_008",
   },
   {
     "name": "PV2 Current",
@@ -106,7 +114,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["pv2current"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_009",
   },
   {
     "name": "PV2 Power",
@@ -115,7 +124,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["pv2watt"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_010",
   },
   {
     "name": "Output Power",
@@ -124,7 +134,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["pvpowerout"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_011",
   },
 
   {
@@ -134,7 +145,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:sine-wave",
     "func": lambda js: js['values']["pvfrequentie"],
-    "divider": 100
+    "divider": 100,
+    "unique_name": "mqtt_012",
   },
 
   {
@@ -144,7 +156,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["pvgridvoltage"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_013",
   },
   {
     "name": "Inverter Output Current (Single/First Phase)",
@@ -153,7 +166,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["pvgridcurrent"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_014",
   },
   {
     "name": "Inverter Output Power (Single/First Phase)",
@@ -162,7 +176,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["pvgridpower"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_015",
   },
   {
     "name": "Inverter Output Voltage (Second Phase)",
@@ -171,7 +186,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["pvgridvoltage2"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_016",
   },
   {
     "name": "Inverter Output Current (Second Phase)",
@@ -180,7 +196,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["pvgridcurrent2"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_017",
   },
   {
     "name": "Inverter Output Power (Second Phase)",
@@ -189,7 +206,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["pvgridpower2"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_018",
   },
   {
     "name": "Inverter Output Voltage (Third Phase)",
@@ -198,7 +216,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["pvgridvoltage3"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_019",
   },
   {
     "name": "Inverter Output Current (Third Phase)",
@@ -207,7 +226,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["pvgridcurrent3"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_020",
   },
   {
     "name": "Inverter Output Power (Third Phase)",
@@ -216,7 +236,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["pvgridpower3"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_021",
   },
 
   {
@@ -227,7 +248,8 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:clock",
     "func": lambda js: js['values']["totworktime"],
-    "divider": 7200
+    "divider": 7200,
+    "unique_name": "mqtt_022",
   },
  
   {
@@ -237,7 +259,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["eactoday"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_023",
   },
   {
     "name": "Self-Consumption (Solar + Battery) Energy - Today (pvenergytoday)",
@@ -246,7 +269,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["pvenergytoday"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_024",
   },
   {
     "name": "Self-Consumption (Solar + Battery) Energy - Total (eactotal)",
@@ -255,7 +279,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["eactotal"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_025",
   },
 
   {
@@ -265,7 +290,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["epv1today"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_026",
   },
   {
     "name": "PV1 Energy - Total",
@@ -274,7 +300,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["epv1total"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_027",
   },
   {
     "name": "PV2 Energy - Today",
@@ -283,7 +310,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["epv2today"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_028",
   },
   {
     "name": "PV2 Energy - Total",
@@ -292,7 +320,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["epv2total"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_029",
   },
   {
     "name": "PV-All Energy - Total",
@@ -301,7 +330,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["epvtotal"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_030",
   },
 
   {
@@ -312,7 +342,8 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:thermometer",
     "func": lambda js: js['values']["pvtemperature"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_031",
   },
   {
     "name": "IPM Temperature",
@@ -322,7 +353,8 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:thermometer",
     "func": lambda js: js['values']["pvipmtemperature"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_032",
   },
   {
     "name": "Boost Temperature",
@@ -332,7 +364,8 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:thermometer",
     "func": lambda js: js['values']["pvboosttemp"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_033",
   },
   {
     "name": "Bat DSP",
@@ -342,7 +375,8 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["bat_dsp"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_034",
   },
 
   {
@@ -352,7 +386,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:battery-arrow-up",
     "func": lambda js: js['values']["eacharge_today"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_035",
   },
   {
     "name": "Battery AC Charge Energy - Total",
@@ -361,7 +396,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL,
     "icon": "mdi:battery-arrow-up",
     "func": lambda js: js['values']["eacharge_total"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_036",
   },
 
   {
@@ -370,7 +406,8 @@ SENSORS = [
     "options": BATTERY_TYPES,
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
-    "func": battery_type_lookup
+    "func": battery_type_lookup,
+    "unique_name": "mqtt_037",
   },
 
   #TODO - Convert to an ENUM
@@ -392,6 +429,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["uwsysworkmode"],
+    "unique_name": "mqtt_038",
   },
 
 
@@ -403,6 +441,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["systemfaultword0"],
+    "unique_name": "mqtt_039",
   },
   {
     "name": "System Fault Word 1",
@@ -412,6 +451,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["systemfaultword1"],
+    "unique_name": "mqtt_040",
   },
   {
     "name": "System Fault Word 2",
@@ -421,6 +461,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["systemfaultword2"],
+    "unique_name": "mqtt_041",
   },
   {
     "name": "System Fault Word 3",
@@ -430,6 +471,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["systemfaultword3"],
+    "unique_name": "mqtt_042",
   },
   {
     "name": "System Fault Word 4",
@@ -439,6 +481,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["systemfaultword4"],
+    "unique_name": "mqtt_043",
   },
   {
     "name": "System Fault Word 5",
@@ -448,6 +491,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["systemfaultword5"],
+    "unique_name": "mqtt_044",
   },
   {
     "name": "System Fault Word 6",
@@ -457,6 +501,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["systemfaultword6"],
+    "unique_name": "mqtt_045",
   },
   {
     "name": "System Fault Word 7",
@@ -466,6 +511,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["systemfaultword7"],
+    "unique_name": "mqtt_046",
   },
 
   {
@@ -475,7 +521,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:battery-arrow-down",
     "func": lambda js: js['values']["pdischarge1"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_047",
   },
   {
     "name": "Battery Charging Power",
@@ -484,7 +531,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:battery-arrow-up",
     "func": lambda js: js['values']["p1charge1"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_048",
   },
   {
     "name": "Battery Voltage",
@@ -493,7 +541,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:home-battery",
     "func": lambda js: js['values']["vbat"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_049",
   },
   {
     "name": "Statement of Charge",
@@ -502,7 +551,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:home-battery",
     "func": lambda js: js['values']["SOC"],
-    "divider": 1
+    "divider": 1,
+    "unique_name": "mqtt_050",
   },
 
   {
@@ -512,7 +562,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:home-import-outline",
     "func": lambda js: js['values']["pactouserr"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_051",
   },
 #  {
 #    "name": "Import from Grid Power - All",
@@ -531,7 +582,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:home-export-outline",
     "func": lambda js: js['values']["pactogridr"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_052",
   },
 #  {
 #    "name": "Export to Grid Power - All",
@@ -550,7 +602,8 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:home-lightning-bolt",
     "func": lambda js: js['values']["plocaloadr"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_053",
   },
 #  {
 #    "name": "Load Consumption Power - All",
@@ -572,6 +625,7 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["spdspstatus"],
+    "unique_name": "mqtt_054",
   },
 
   {
@@ -582,7 +636,8 @@ SENSORS = [
     "entity_category": EntityCategory.DIAGNOSTIC,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["spbusvolt"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_055",
   },
 
   {
@@ -592,7 +647,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:home-import-outline",
     "func": lambda js: js['values']["etouser_tod"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_056",
   },
   {
     "name": "Import from Grid Energy - Total",
@@ -601,7 +657,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL,
     "icon": "mdi:home-import-outline",
     "func": lambda js: js['values']["etouser_tot"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_057",
   },
   {
     "name": "Export to Grid Energy - Today",
@@ -610,7 +667,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:home-export-outline",
     "func": lambda js: js['values']["etogrid_tod"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_058",
   },
   {
     "name": "Export to Grid Energy - Total",
@@ -619,7 +677,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL,
     "icon": "mdi:home-import-outline",
     "func": lambda js: js['values']["etogrid_tot"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_059",
   },
 
   {
@@ -629,7 +688,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:battery-arrow-down",
     "func": lambda js: js['values']["edischarge1_tod"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_060",
   },
   {
     "name": "Battery Discharged Energy - Total",
@@ -638,7 +698,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL,
     "icon": "mdi:battery-arrow-down",
     "func": lambda js: js['values']["edischarge1_tot"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_061",
   },
 
   {
@@ -648,7 +709,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:battery-arrow-up",
     "func": lambda js: js['values']["eharge1_tod"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_062",
   },
   {
     "name": "Battery Charged Energy - Total",
@@ -657,7 +719,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL,
     "icon": "mdi:battery-arrow-up",
     "func": lambda js: js['values']["eharge1_tot"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_063",
   },
 
   {
@@ -667,7 +730,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:home-lightning-bolt",
     "func": lambda js: js['values']["elocalload_tod"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_064",
   },
   {
     "name": "Load Consumption Energy - Total",
@@ -676,7 +740,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL,
     "icon": "mdi:home-lightning-bolt",
     "func": lambda js: js['values']["elocalload_tot"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "mqtt_065",
   },
 ]
 

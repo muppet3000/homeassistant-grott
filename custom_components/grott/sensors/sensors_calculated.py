@@ -24,7 +24,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["epv1today"] + js['values']['epv2today'],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "calculated_001",
   },
 
   {
@@ -34,7 +35,8 @@ SENSORS = [
     "state_class": SensorStateClass.TOTAL,
     "icon": "mdi:solar-power",
     "func": lambda js: js['values']["epv1total"] + js['values']['epv2total'],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "calculated_002",
   },
 
   {
@@ -45,7 +47,8 @@ SENSORS = [
     "icon": "mdi:home-lightning-bolt",
     #Import from Grid - Battery AC Charge
     "func": lambda js: js['values']["etouser_tod"] - js['values']['eacharge_today'],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "calculated_003",
   },
 
   {
@@ -56,7 +59,8 @@ SENSORS = [
     "icon": "mdi:home-lightning-bolt",
     #Load Consumption - Load Consumption AC - Battery Discharged
     "func": lambda js: js['values']["elocalload_tod"] - (js['values']["etouser_tod"] - js['values']['eacharge_today']) - js['values']['edischarge1_tod'],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "calculated_004",
   },
 
   {
@@ -67,7 +71,8 @@ SENSORS = [
     "icon": "mdi:home-lightning-bolt",
     #Load Consumption - Load Consumption AC
     "func": lambda js: js['values']["elocalload_tod"] - (js['values']["etouser_tod"] - js['values']['eacharge_today']),
-    "divider": 10
+    "divider": 10,
+    "unique_name": "calculated_005",
   },
 
   {
@@ -78,7 +83,8 @@ SENSORS = [
     "icon": "mdi:flash",
     #Load Consumption Energy (PV + Battery) + Export
     "func": lambda js: js['values']["elocalload_tod"] - (js['values']["etouser_tod"] - js['values']['eacharge_today']) + js['values']["etogrid_tod"],
-    "divider": 10
+    "divider": 10,
+    "unique_name": "calculated_006",
   },
 ]
 

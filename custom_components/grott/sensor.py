@@ -151,8 +151,6 @@ class GrottSensorUpdateGroup:
 
     def process_update(self, payload) -> None:
         """Process an update from the MQTT broker."""
-        #topic = message.topic
-        #payload = json.loads(message.payload)
         _LOGGER.debug("PROCESSING UPDATES")
         _LOGGER.debug("%s sensors for processing", len(self._sensors))
         _LOGGER.debug("_device_id: %s, payload[device']: %s", self._device_id, payload['device'])
@@ -169,20 +167,14 @@ class GrottSensorUpdateGroup:
 class GrottSensor(SensorEntity):
     """Representation of a sensor that is updated via MQTT."""
 
-    def __init__(self, data_source, device_id, name, icon, device_class, unit_of_measurement = None, state_class = None, func = None, divider = None, entity_category = None, ignore_zero_values = False, options = None) -> None:
+    def __init__(self, data_source, device_id, name, unique_name, icon, device_class, unit_of_measurement = None, state_class = None, func = None, divider = None, entity_category = None, ignore_zero_values = False, options = None) -> None:
         """Initialize the sensor."""
         self._data_source = data_source 
         self._device_id = device_id
         self._ignore_zero_values = ignore_zero_values
         self._attr_name = f"{device_id} {name}"
         #TODO - Change the unique id to be generated based on a unique key, not the name - that way we can change it in the future without breaking history (use the key from the lambda lookup)
-        self._attr_unique_id = slugify(device_id + "_" + name)
-        #self._attr_icon = icon
-        #self._attr_device_class = device_class
-        #self._attr_native_unit_of_measurement = unit_of_measurement
-        #self._attr_state_class = state_class
-        #self._attr_entity_category = entity_category
-        #self._attr_options = options
+        self._attr_unique_id = slugify("grott" + "_" + device_id + "_" + unique_name)
         self._attr_should_poll = False
         
         self._func = func        
@@ -200,7 +192,6 @@ class GrottSensor(SensorEntity):
             key=slugify(name),
             name=name,
             device_class=device_class,
-            #unit_of_measurement = unit_of_measurement,
             native_unit_of_measurement = unit_of_measurement,
             state_class = state_class,
             icon = icon,
@@ -208,20 +199,6 @@ class GrottSensor(SensorEntity):
             options = options
         )
         self.entity_description = description
-
-        """
-        {
-           "name": "PV-All Power",
-           "device_class": SensorDeviceClass.POWER,
-           "unit_of_measurement": UnitOfPower.WATT,
-           "state_class": SensorStateClass.MEASUREMENT,
-           "icon": "mdi:solar-power",
-           "func": lambda js: js['values']["pvpowerin"],
-           "divider": 10
-        },
-        """
-
-
 
     def process_update(self, mqtt_data) -> None:
         """Update the state of the sensor."""
