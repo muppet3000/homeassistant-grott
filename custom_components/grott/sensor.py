@@ -38,21 +38,13 @@ _LOGGER = logging.getLogger(__name__)
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up the Grott sensors."""
     device_update_groups = {}
-    _LOGGER.debug("Configuring sensor using config data & options")
+    _LOGGER.info("Configuring sensor using config data & options")
 
-    config = {**config_entry.data}
-    _LOGGER.debug("Local config var: %s", config)
-    _LOGGER.debug("Config data: %s", config_entry.data)
-    _LOGGER.debug("Config options: %s", config_entry.options)
-    #hass_data_entry=hass.data[DOMAIN][config_entry.entry_id]
-    #_LOGGER.debug("Local config var: %s", config)
     if config_entry.options:
         _LOGGER.debug("Options found, overwriting config data....")
-        #hass_data_entry.update(config_entry.options)
         hass.config_entries.async_update_entry(config_entry, data=config_entry.options)
 
     config = {**config_entry.data}
-    _LOGGER.debug("Local config var: %s", config)
     _LOGGER.debug("Config data: %s", config_entry.data)
     _LOGGER.debug("Config options: %s", config_entry.options)
 
@@ -62,22 +54,15 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         topic = message.topic
         payload = json.loads(message.payload)
         _LOGGER.debug("Received message: %s", topic)
-        _LOGGER.debug("  Payload: %s", payload)
-
-        #hass_data_entry=hass.data[DOMAIN][config_entry.entry_id]
-        #_LOGGER.debug("Configured to look for device: %s (+ means all)", hass_data_entry[CONF_DEVICE_ID])
-        #_LOGGER.debug("Configured to include calculated values: %s", hass_data_entry[CONF_CALC_VALUES])
-        _LOGGER.debug("Configured to look for device: %s (+ means all)", config[CONF_DEVICE_ID])
-        _LOGGER.debug("Configured to include calculated values: %s", config[CONF_CALC_VALUES])
-
+        _LOGGER.debug("Payload: %s", payload)
 
         # Get the configuration for what device to get data for (defaults to + which means we will subscribe to all devices)
         device = config[CONF_DEVICE_ID]
-        _LOGGER.debug("Looking for device: %s (+ means all)", device)
+        _LOGGER.debug("Configured to look for device: %s (+ means all)", device)
 
         # Get the configuration for whether to include calculated values too
         conf_calc_values = config[CONF_CALC_VALUES]
-        _LOGGER.debug("Including calculated values: %s", conf_calc_values)
+        _LOGGER.debug("Configured to include calculated values: %s", conf_calc_values)
 
         device_id = payload["device"]
         if (device == '+' or device_id == device):
@@ -114,7 +99,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 async def async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, payload):
     #Add to update groups if not already there
     if device_id not in device_update_groups:
-        _LOGGER.debug("New device found: %s", device_id)
+        _LOGGER.info("New device found: %s", device_id)
         groups = [
             GrottSensorUpdateGroup(sensors_mqtt.SENSORS_LABEL, device_id, sensors_mqtt.SENSORS, payload),
         ]
@@ -141,7 +126,6 @@ class GrottSensorUpdateGroup:
         self._group_label = group_label
         self._device_id = device_id
         self._sensors = []
-        #payload = json.loads(message.payload)
         for sensor in sensors:
           try:
             value = sensor['func'](payload)
@@ -151,9 +135,8 @@ class GrottSensorUpdateGroup:
 
     def process_update(self, payload) -> None:
         """Process an update from the MQTT broker."""
-        _LOGGER.debug("PROCESSING UPDATES")
-        _LOGGER.debug("%s sensors for processing", len(self._sensors))
-        _LOGGER.debug("_device_id: %s, payload[device']: %s", self._device_id, payload['device'])
+        _LOGGER.info("PROCESSING UPDATES")
+        _LOGGER.info("%s sensors for processing", len(self._sensors))
         if (self._device_id == payload['device']):
             _LOGGER.debug("%s - matched on %s", self._group_label, self._device_id)
             for sensor in self._sensors:
@@ -173,7 +156,6 @@ class GrottSensor(SensorEntity):
         self._device_id = device_id
         self._ignore_zero_values = ignore_zero_values
         self._attr_name = f"{device_id} {name}"
-        #TODO - Change the unique id to be generated based on a unique key, not the name - that way we can change it in the future without breaking history (use the key from the lambda lookup)
         self._attr_unique_id = slugify("grott" + "_" + device_id + "_" + unique_name)
         self._attr_should_poll = False
         
@@ -202,7 +184,7 @@ class GrottSensor(SensorEntity):
 
     def process_update(self, mqtt_data) -> None:
         """Update the state of the sensor."""
-        #_LOGGER.debug("Processing update for: %s, unique id: %s", self._attr_name, self._attr_unique_id)
+        _LOGGER.debug("Processing update for: %s, unique id: %s", self._attr_name, self._attr_unique_id)
         new_value = self._func(mqtt_data)
         if self._divider != None:
             new_value = float(new_value)/self._divider
