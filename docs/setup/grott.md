@@ -34,7 +34,7 @@ The default configuration file has no useful configuration, to make things work 
 1. In the `Generic` section:
     1. `invtype` - Choose one of `default`,`sph`,`spf`,`max`
 1. In the MQTT section:
-    1. `ip` - Set to the IP or hostname of the machine that will be running your MQTT server (see [mqtt](docs/setup/mqtt.md) for more information) 
+    1. `ip` - Set to the IP or hostname of the machine that will be running your MQTT server (see [mqtt](mqtt.md) for more information) 
     1. `port` - Set to the port that your MQTT server is running on (default is 1883)
     1. `topic` - Uncomment, defaults to `energy/growatt`
     1. `auth` - Uncomment, defaults to `False`
@@ -42,4 +42,4 @@ The default configuration file has no useful configuration, to make things work 
 # Summary
 At this point you should now have a running Grott server which is capable of receiving traffic from your inverter and forwarding it to both MQTT AND the Growatt Servers.
 
-Next: [Datalogger Config](docs/setup/datalogger.md)
+Next: [Datalogger Config](datalogger.md)
