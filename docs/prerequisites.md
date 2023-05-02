@@ -9,4 +9,4 @@ Each link below provides a guide on how to setup the relevant components to make
 4. [Home Assistant MQTT Broker](docs/setup/homeassistant-mqtt-broker.md)
 
 # Alternative setup
-For those of you familiar with Docker and/or docker-compose you can configure all of the above with a simple docker-compose.yml file which will bring up the entire stack (including home-assistant as well if you want). You can follow this guide instead...... TODO - Add docker-compose guide
+For those of you familiar with Docker and/or docker-compose you can configure all of the above with a simple docker-compose.yml file which will bring up the entire stack (including home-assistant as well if you want). You can follow this guide instead: [docker-compose guide](docs/setup/docker-compose-guide.md)
