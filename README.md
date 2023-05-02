@@ -7,7 +7,7 @@
 
 # Grott Home Assistant Custom Component (grott)
 Custom component (installable via HACS) for registering sensors associated with Growatt inverters that are being published via [Grott](https://github.com/johanmeijer/grott).
-See [pre-requisites](TODO) for more information.
+See [prerequisites](docs/prerequisites.md) for more information.
 
 # Installation
 This integration can be installed via HACS for Home Assistant
@@ -36,10 +36,10 @@ or (if you don't want to use HACS)
 1. Download the latest release to your custom_components folder inside the Home Assistant configuration directory and unpack it
 
 # Implementation
-On initial release this plugin works in read-only mode and pulls data from an MQTT server that has been pushed to by Grott (more information/how to configure this [here](TODO))
+On initial release this plugin works in read-only mode and pulls data from an MQTT server that has been pushed to by Grott (more information/how to configure this [here](docs/prerequisites.md))
 
 The future plan will be to grow this project so that it allows configuration of inverters via Grott also.
 
 # More Info
-- (Pre-requisites)[TODO]
+- [Prerequisites](docs/prerequisites.md)
 - [FAQ](docs/FAQ.md)
