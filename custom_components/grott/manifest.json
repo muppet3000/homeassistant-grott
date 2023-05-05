@@ -1,11 +1,11 @@
 {
     "domain": "grott",
     "name": "Grott",
-    "documentation": "https://github.com/muppet3000/homeassistant-grott",
-    "issue_tracker": "https://github.com/muppet3000/homeassistant-grott/issues",
     "codeowners": ["@muppet3000"],
-    "dependencies": ["mqtt"],
-    "iot_class": "local_push",
     "config_flow": true,
+    "dependencies": ["mqtt"],
+    "documentation": "https://github.com/muppet3000/homeassistant-grott",
+    "iot_class": "local_push",
+    "issue_tracker": "https://github.com/muppet3000/homeassistant-grott/issues",
     "version": "0.0.1"
   }
