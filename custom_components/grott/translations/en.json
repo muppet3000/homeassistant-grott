@@ -15,7 +15,8 @@
         "data": {
           "device_id": "Device Id (leave as + to auto-detect all devices on your MQTT)",
           "calc_values": "Calculate additional values from raw MQTT values"
-        }
+        },
+        "title": "Enter your device information"
       }
     }
   },
@@ -26,7 +27,8 @@
         "data": {
           "device_id": "Device Id (leave as + to auto-detect all devices on your MQTT)",
           "calc_values": "Calculate additional values from raw MQTT values"
-        }
+        },
+        "title": "Enter your device information"
       }
     }
   }
