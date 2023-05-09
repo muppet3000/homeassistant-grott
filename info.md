@@ -3,6 +3,8 @@ This custom component (installable via HACS) is designed to integrate with an in
 
 This integration is designed to replace the use of the [growatt-server-api](https://github.com/muppet3000/homeassistant-growatt_server_api) Integration which has had numerous problems due to API instability)
 
+NOTE - While it is probably possible to run both this Integration and the `growatt-server-api` integration at the same time, it is not advised. I recommend disabling the previous integration to avoid clashes.
+
 If anyone wants to say 'thanks' for the integration, feel free to click something below..... 
 
 [![bmab_badge](https://img.shields.io/badge/Buy_Me-A_Beer-FFDD00.svg?style=for-the-badge&logo=buymeacoffee)](https://www.buymeacoffee.com/muppet3000)
