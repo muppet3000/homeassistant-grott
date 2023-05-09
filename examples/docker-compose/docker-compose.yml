@@ -1,1 +1,41 @@
-Placeholder
+version: "3"
+services:
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto:2.0.15
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    ports:
+      - 1883:1883
+
+  grott:
+    container_name: grott
+    image: ledidobe/grott:2.7.8
+    volumes:
+      - ./grott/output:/tmp/grottlog/
+      - ./grott/config/grott.ini:/app/grott.ini
+    ports:
+      - 5279:5279
+
+
+
+
+
+
+
+
+#Optional - Run HomeAssistant as a docker container as well
+#  homeassistant:
+#    container_name: home-assistant
+#    image: homeassistant/home-assistant:2023.2.0
+#    volumes:
+#      - /mnt/storage/monitoring/home_assistant:/config
+#    environment:
+#      - TZ=Europe/London
+#      - PUID=1005
+#      - PGID=1005
+#    restart: always
+#    network_mode: host
+
