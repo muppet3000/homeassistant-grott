@@ -29,6 +29,6 @@ The Home Assistant MQTT broker is the simplest part of the whole system, it simp
 
 # Summary
 You now have completed all of the prequisite steps in order to use Grott to forward data to Home Assistant.
-If you haven't already installed the HomeAssistant Grott Integration, follow the steps [here](README.md) and then data should start appearing within a minute.
+If you haven't already installed the HomeAssistant Grott Integration, follow the steps [here](../../README.md) and then data should start appearing within a minute.
 
-Further information on how the setup works & further setup steps, take a look at the [FAQ](FAQ.md).
+Further information on how the setup works & further setup steps, take a look at the [FAQ](../FAQ.md).
