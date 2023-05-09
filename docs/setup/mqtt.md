@@ -13,7 +13,7 @@ docker run -d -v <path_to_mqtt_dir>/config:/mosquitto/config -v <path_to_mqtt_di
 ```
 Where `<path_to_mqtt_dir>` is replaced with the path locally for a directory to store anything persistent e.g. configuration files and data, please see the [configuration](#configuration) section below for what should appear in the configuration file
 
-See [docker-compose guide](docs/setup/docker-compose-guide.md) for a more complete docker deployment method
+See [docker-compose guide](docker-compose-guide.md) for a more complete docker deployment method
 
 ## Local install
 Install relevant version from this page: https://www.mosquitto.org/download/
