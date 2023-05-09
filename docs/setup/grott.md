@@ -32,7 +32,7 @@ Copy the configuration file from [here](https://github.com/johanmeijer/grott/blo
 
 The default configuration file has no useful configuration, to make things work with Home Assistant the following changes need to be made:
 1. In the `Generic` section:
-    1. `invtype` - Choose one of `default`,`sph`,`spf`,`max`
+    1. `invtype` - Choose one of `default`,`sph`,`spf`,`max`, `tl3`
 1. In the MQTT section:
     1. `ip` - Set to the IP or hostname of the machine that will be running your MQTT server (see [mqtt](mqtt.md) for more information) 
     1. `port` - Set to the port that your MQTT server is running on (default is 1883)
