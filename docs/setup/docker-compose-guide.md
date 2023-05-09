@@ -9,8 +9,9 @@ This is a condensed version of what I use myself, docker simplifies the whole pr
 
 ## Extra steps
 Even when using docker-compose to simplify things, you still need to follow the manual steps of the setup process:
-1. [Inverter/DataLogger Config](datalogger.md)
-2. [Home Assistant MQTT Broker](homeassistant-mqtt-broker.md)
+1. [Growatt Config](grott.md) - Inverter type only - Set this in the `docker-compose/grott/config/grott.ini` file (line 2)fer
+2. [Inverter/DataLogger Config](datalogger.md)
+3. [Home Assistant MQTT Broker](homeassistant-mqtt-broker.md)
 
 ## More notes
 Within the `docker-compose.yml` file is also a commented out setup of Home Assistant. You don't have to use it, it's just there as an example.
