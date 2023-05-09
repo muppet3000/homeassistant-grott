@@ -7,6 +7,8 @@
 Custom component (installable via HACS) for registering sensors associated with Growatt inverters that are being published via [Grott](https://github.com/johanmeijer/grott).
 See [prerequisites](docs/prerequisites.md) for more information.
 
+NOTE - While it is probably possible to run both this Integration and the `growatt_server_api` integration at the same time, it is not advised. I recommend disabling the previous integration to avoid clashes.
+
 # Installation
 Before installing the Integration, please ensure you have followed all steps in the [prerequisites](docs/prerequisites.md) section i.e. you have a working Grott -> MQTT setup.
 
