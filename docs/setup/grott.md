@@ -14,7 +14,7 @@ docker run -d -v <path_to_config_file>:/app/grott.ini -p 5279:5279 ledidobe/grot
 ```
 Where `<path_to_config_file` is replaced with the path locally for your configuration file created in the [configuration](#configuration) section below
 
-See [docker-compose guide](docs/setup/docker-compose-guide.md) for a more complete docker deployment method
+See [docker-compose guide](docker-compose-guide.md) for a more complete docker deployment method
 
 ## Python Application
 Adapted from [here](https://github.com/johanmeijer/grott/wiki/@-First-time-installation).
