@@ -3,8 +3,6 @@
 [![bmab_badge](https://img.shields.io/badge/Buy_Me-A_Beer-FFDD00.svg?logo=buymeacoffee)](https://www.buymeacoffee.com/muppet3000)
 [![paypal_badge](https://img.shields.io/badge/PayPal-Beer_Fund-blue.svg?&logo=paypal)](https://www.paypal.com/paypalme/muppet3000)
 
-# WORK IN PROGRESS - DO NOT USE!!!!
-
 # Grott Home Assistant Custom Component (grott)
 Custom component (installable via HACS) for registering sensors associated with Growatt inverters that are being published via [Grott](https://github.com/johanmeijer/grott).
 See [prerequisites](docs/prerequisites.md) for more information.
