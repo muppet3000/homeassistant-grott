@@ -1,0 +1,341 @@
+template:
+#Replicating old Growatt Server API metrics so the grafana dashboards still work - Only works if Grott is running!
+
+#All PV Wattage#0 kW
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> All PV Wattage
+      unique_id: <DEVICE_ID-LOWER_CASE>_all_pv_wattage
+      device_class: 'power'
+      unit_of_measurement: 'kW'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ (states('sensor.<DEVICE_ID-LOWER_CASE>_pv_all_power') | float) / 1000 }}
+
+#Battery charged today#8.6 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Battery charged today
+      unique_id: <DEVICE_ID-LOWER_CASE>_battery_charged_today
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total_increasing'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_battery_charged_energy_today') }}
+
+
+#Battery charging#0 kW
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Battery charging
+      unique_id: <DEVICE_ID-LOWER_CASE>_battery_charging
+      device_class: 'power'
+      unit_of_measurement: 'kW'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ (states('sensor.<DEVICE_ID-LOWER_CASE>_battery_charging_power') | float) / 1000 }}
+
+#Battery discharged today#8.8 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Battery discharged today
+      unique_id: <DEVICE_ID-LOWER_CASE>_battery_discharged_today
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total_increasing'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_battery_discharged_energy_today') }}
+
+#Battery discharging kW#1.03 kW
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Battery discharging kW
+      unique_id: <DEVICE_ID-LOWER_CASE>_battery_discharging_kw
+      device_class: 'power'
+      unit_of_measurement: 'kW'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ (states('sensor.<DEVICE_ID-LOWER_CASE>_battery_discharging_power') | float) / 1000 }}
+
+#Battery discharging W#1,030 W
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Battery discharging W
+      unique_id: <DEVICE_ID-LOWER_CASE>_battery_discharging_w
+      device_class: 'power'
+      unit_of_measurement: 'W'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_battery_discharging_power') }}
+
+#Battery voltage#52.1 V
+#NOTE - This is identically named as the Grott sensor, we just re-use the unique ID for historic consistency
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Battery voltage
+      unique_id: <DEVICE_ID-LOWER_CASE>_battery_voltage
+      device_class: 'voltage'
+      unit_of_measurement: 'V'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_battery_voltage') }}
+
+#Export to grid#0 kW
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Export to grid
+      unique_id: <DEVICE_ID-LOWER_CASE>_export_to_grid
+      device_class: 'power'
+      unit_of_measurement: 'kW'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ (states('sensor.<DEVICE_ID-LOWER_CASE>_export_to_grid_power') | float) / 1000 }}
+
+#Export to grid today#1.9 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Export to grid today
+      unique_id: <DEVICE_ID-LOWER_CASE>_export_to_grid_today
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total_increasing'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_export_to_grid_energy_today') }}
+
+#Grid voltage#244.5 V
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Grid voltage
+      unique_id: <DEVICE_ID-LOWER_CASE>_grid_voltage
+      device_class: 'voltage'
+      unit_of_measurement: 'V'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_inverter_output_voltage_single_first_phase') }}
+
+#Import from grid#0 kW
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Import from grid
+      unique_id: <DEVICE_ID-LOWER_CASE>_import_from_grid
+      device_class: 'power'
+      unit_of_measurement: 'kW'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ (states('sensor.<DEVICE_ID-LOWER_CASE>_import_from_grid_power') | float) / 1000 }}
+
+#Import from grid today (load + charging)#9.84 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Import from grid today (load + charging)
+      unique_id: <DEVICE_ID-LOWER_CASE>_import_from_grid_today_load_charging
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total_increasing'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_import_from_grid_energy_today') }}
+
+#Import from grid today (load)#4.8 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Import from grid today (load)
+      unique_id: <DEVICE_ID-LOWER_CASE>_import_from_grid_today_load
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total_increasing'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_load_consumption_energy_ac_today_calculated') }}
+
+#Last Data Update#4 minutes ago
+#NOTE - N/A
+
+#Lifetime battery charged#6,892.8 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Lifetime battery charged
+      unique_id: <DEVICE_ID-LOWER_CASE>_lifetime_battery_charged
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_battery_charged_energy_total') }}
+
+#Lifetime battery discharged#7,390.4 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Lifetime battery discharged
+      unique_id: <DEVICE_ID-LOWER_CASE>_lifetime_battery_discharged
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_battery_discharged_energy_total') }}
+
+#Lifetime export to grid#3,016 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Lifetime export to grid
+      unique_id: <DEVICE_ID-LOWER_CASE>_lifetime_export_to_grid
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_export_to_grid_energy_total') }}
+
+#Lifetime load consumption#0 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Lifetime load consumption
+      unique_id: <DEVICE_ID-LOWER_CASE>_lifetime_load_consumption
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_load_consumption_energy_total') }}
+
+#Lifetime solar energy#10,110 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Lifetime solar energy
+      unique_id: <DEVICE_ID-LOWER_CASE>_lifetime_solar_energy
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_pv_all_energy_total_calculated') }}
+
+#Load consumption#1.03 kW
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Load consumption
+      unique_id: <DEVICE_ID-LOWER_CASE>_load_consumption
+      device_class: 'power'
+      unit_of_measurement: 'kW'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ (states('sensor.<DEVICE_ID-LOWER_CASE>_load_consumption_power') | float) / 1000 }}
+
+#Load consumption today#21.3 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Load consumption today
+      unique_id: <DEVICE_ID-LOWER_CASE>_load_consumption_today
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total_increasing'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_load_consumption_energy_today') }}
+
+#Load consumption today (battery)#8.8 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Load consumption today (battery)
+      unique_id: <DEVICE_ID-LOWER_CASE>_load_consumption_today_battery
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total_increasing'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_battery_discharged_energy_today') }}
+
+#Load consumption today (solar)#7.7 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Load consumption today (solar)
+      unique_id: <DEVICE_ID-LOWER_CASE>_load_consumption_today_solar
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total_increasing'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_load_consumption_energy_pv_today_calculated') }}
+
+#PV1 voltage#149.7 V
+#NOTE - This is identically named as the Grott sensor, we just re-use the unique ID for historic consistency
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> PV1 voltage
+      unique_id: <DEVICE_ID-LOWER_CASE>_pv1_voltage
+      device_class: 'voltage'
+      unit_of_measurement: 'V'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_pv1_voltage') }}
+
+#PV1 Wattage#0 kW
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> PV1 Wattage
+      unique_id: <DEVICE_ID-LOWER_CASE>_pv1_wattage
+      device_class: 'power'
+      unit_of_measurement: 'kW'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ (states('sensor.<DEVICE_ID-LOWER_CASE>_pv1_power') | float) / 1000 }}
+
+#PV2 voltage#0 V
+#NOTE - This is identically named as the Grott sensor, we just re-use the unique ID for historic consistency
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> PV2 voltage
+      unique_id: <DEVICE_ID-LOWER_CASE>_pv2_voltage
+      device_class: 'voltage'
+      unit_of_measurement: 'V'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_pv2_voltage') }}
+
+#PV2 Wattage#0 kW
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> PV2 Wattage
+      unique_id: <DEVICE_ID-LOWER_CASE>_pv2_wattage
+      device_class: 'power'
+      unit_of_measurement: 'kW'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ (states('sensor.<DEVICE_ID-LOWER_CASE>_pv2_power') | float) / 1000 }}
+
+#Self consumption today (solar + battery)#16.5 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Self consumption today (solar + battery)
+      unique_id: <DEVICE_ID-LOWER_CASE>_self_consumption_today_solar_battery
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total_increasing'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_self_consumption_solar_battery_energy_today_eactoday') }}
+
+#Solar energy today#13.1 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Solar energy today
+      unique_id: <DEVICE_ID-LOWER_CASE>_solar_energy_today
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_pv_all_energy_today_calculated') }}
+
+#Statement of charge#56%
+#NOTE - This is identically named as the Grott sensor, we just re-use the unique ID for historic consistency
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> Statement of charge
+      unique_id: <DEVICE_ID-LOWER_CASE>_statement_of_charge
+      device_class: 'battery'
+      unit_of_measurement: '%'
+      state_class: 'measurement'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_statement_of_charge') }}
+
+#System production today (self-consumption + export)#18.4 kWh
+  - sensor:
+    - name: <DEVICE_ID-UPPER_CASE> System production today (self-consumption + export)
+      unique_id: <DEVICE_ID-LOWER_CASE>_system_production_today_self_consumption_export
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: 'total_increasing'
+      icon: 'mdi:solar-power'
+      state: >
+        {{ states('sensor.<DEVICE_ID-LOWER_CASE>_system_output_self_consumption_export_today_calculated') }}
+
