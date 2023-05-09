@@ -10,6 +10,8 @@ Custom component (installable via HACS) for registering sensors associated with 
 See [prerequisites](docs/prerequisites.md) for more information.
 
 # Installation
+Before installing the Integration, please ensure you have followed all steps in the [prerequisites](docs/prerequisites.md) section i.e. you have a working Grott -> MQTT setup.
+
 This integration can be installed via HACS for Home Assistant
 1. [Install HACS](https://hacs.xyz/docs/setup/prerequisites) (Follow all the way through to the 'Configuration' page)
 1. In HACS install this integration:
