@@ -43,3 +43,4 @@ The future plan will be to grow this project so that it allows configuration of 
 # More Info
 - [Prerequisites](docs/prerequisites.md)
 - [FAQ](docs/FAQ.md)
+- [How it works](docs/info/grott.md)
