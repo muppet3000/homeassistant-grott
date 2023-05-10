@@ -5,6 +5,8 @@ This integration is designed to replace the use of the [growatt-server-api](http
 
 NOTE - While it is probably possible to run both this Integration and the `growatt-server-api` integration at the same time, it is not advised. I recommend disabling the previous integration to avoid clashes.
 
+For anyone that wants to keep their old sensor names from the growatt-server-api integration then take a look [here](https://github.com/muppet3000/homeassistant-grott/blob/main/docs/FAQ.md#how-can-i-use-grott-but-keep-my-old-sensor-names-from-the-growatt-server-api-integration)
+
 If anyone wants to say 'thanks' for the integration, feel free to click something below..... 
 
 [![bmab_badge](https://img.shields.io/badge/Buy_Me-A_Beer-FFDD00.svg?style=for-the-badge&logo=buymeacoffee)](https://www.buymeacoffee.com/muppet3000)
