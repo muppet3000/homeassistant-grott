@@ -128,6 +128,36 @@ SENSORS = [
     "unique_name": "mqtt_010",
   },
   {
+    "name": "PV3 Voltage",
+    "device_class": SensorDeviceClass.VOLTAGE,
+    "unit_of_measurement": UnitOfElectricPotential.VOLT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:solar-power",
+    "func": lambda js: js['values']["pv3voltage"],
+    "divider": 10,
+    "unique_name": "mqtt_066",
+  },
+  {
+    "name": "PV3 Current",
+    "device_class": SensorDeviceClass.CURRENT,
+    "unit_of_measurement": UnitOfElectricCurrent.AMPERE,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:solar-power",
+    "func": lambda js: js['values']["pv3current"],
+    "divider": 10,
+    "unique_name": "mqtt_067",
+  },
+  {
+    "name": "PV3 Power",
+    "device_class": SensorDeviceClass.POWER,
+    "unit_of_measurement": UnitOfPower.WATT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:solar-power",
+    "func": lambda js: js['values']["pv3watt"],
+    "divider": 10,
+    "unique_name": "mqtt_068",
+  },
+  {
     "name": "Output Power",
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
@@ -323,6 +353,27 @@ SENSORS = [
     "divider": 10,
     "unique_name": "mqtt_029",
   },
+  {
+    "name": "PV3 Energy - Today",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
+    "icon": "mdi:solar-power",
+    "func": lambda js: js['values']["epv3today"],
+    "divider": 10,
+    "unique_name": "mqtt_069",
+  },
+  {
+    "name": "PV3 Energy - Total",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL,
+    "icon": "mdi:solar-power",
+    "func": lambda js: js['values']["epv3total"],
+    "divider": 10,
+    "unique_name": "mqtt_070",
+  },
+
   {
     "name": "PV-All Energy - Total",
     "device_class": SensorDeviceClass.ENERGY,
@@ -743,5 +794,10 @@ SENSORS = [
     "divider": 10,
     "unique_name": "mqtt_065",
   },
+  #mqtt_66 - PV3 Voltage
+  #mqtt_67 - PV3 Current
+  #mqtt_68 - PV3 Power
+  #mqtt_69 - PV3 Energy - Today
+  #mqtt_70 - PV3 Energy - Total
 ]
 
