@@ -66,9 +66,13 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
         device_id = payload["device"]
         if (device == '+' or device_id == device):
-            update_groups = await async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, payload)
-            for update_group in update_groups:
-                update_group.process_update(payload)
+            #We cannot handle buffered data, so we ignore it
+            if (payload["buffered"] == "no"):
+              update_groups = await async_get_device_groups(device_update_groups, async_add_entities, device_id, conf_calc_values, payload)
+              for update_group in update_groups:
+                  update_group.process_update(payload)
+            else:
+              _LOGGER.info("Ignoring buffered data encountered from: %s", payload["time"])
 
         #HACKS START HERE
         #hacked_values={}
