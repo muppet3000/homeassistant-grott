@@ -158,6 +158,36 @@ SENSORS = [
     "unique_name": "mqtt_068",
   },
   {
+    "name": "PV4 Voltage",
+    "device_class": SensorDeviceClass.VOLTAGE,
+    "unit_of_measurement": UnitOfElectricPotential.VOLT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:solar-power",
+    "func": lambda js: js['values']["pv4voltage"],
+    "divider": 10,
+    "unique_name": "mqtt_072",
+  },
+  {
+    "name": "PV4 Current",
+    "device_class": SensorDeviceClass.CURRENT,
+    "unit_of_measurement": UnitOfElectricCurrent.AMPERE,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:solar-power",
+    "func": lambda js: js['values']["pv4current"],
+    "divider": 10,
+    "unique_name": "mqtt_073",
+  },
+  {
+    "name": "PV4 Power",
+    "device_class": SensorDeviceClass.POWER,
+    "unit_of_measurement": UnitOfPower.WATT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:solar-power",
+    "func": lambda js: js['values']["pv4watt"],
+    "divider": 10,
+    "unique_name": "mqtt_074",
+  },
+  {
     "name": "Output Power",
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
@@ -382,6 +412,26 @@ SENSORS = [
     "func": lambda js: js['values']["epv3total"],
     "divider": 10,
     "unique_name": "mqtt_070",
+  },
+  {
+    "name": "PV4 Energy - Today",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL_INCREASING,
+    "icon": "mdi:solar-power",
+    "func": lambda js: js['values']["epv4today"],
+    "divider": 10,
+    "unique_name": "mqtt_075",
+  },
+  {
+    "name": "PV4 Energy - Total",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL,
+    "icon": "mdi:solar-power",
+    "func": lambda js: js['values']["epv4total"],
+    "divider": 10,
+    "unique_name": "mqtt_076",
   },
 
   {
@@ -810,6 +860,11 @@ SENSORS = [
   #mqtt_069 - PV3 Energy - Today
   #mqtt_070 - PV3 Energy - Total
   #mqtt_071 - Self-Consumption (Solar + Battery) Energy - Total (pvenergytotal)
+  #mqtt_072 - PV4 Voltage
+  #mqtt_073 - PV4 Current
+  #mqtt_074 - PV4 Power
+  #mqtt_075 - PV4 Energy - Today
+  #mqtt_076 - PV4 Energy - Total
 
 ]
 
