@@ -18,6 +18,7 @@ services:
       - ./grott/config/grott.ini:/app/grott.ini
     ports:
       - 5279:5279
+    restart: unless-stopped
 
 
 
