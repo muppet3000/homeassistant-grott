@@ -312,6 +312,16 @@ SENSORS = [
     "divider": 10,
     "unique_name": "mqtt_025",
   },
+  {
+    "name": "Self-Consumption (Solar + Battery) Energy - Total (pvenergytotal)",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL,
+    "icon": "mdi:solar-power",
+    "func": lambda js: js['values']["pvenergytotal"],
+    "divider": 10,
+    "unique_name": "mqtt_071",
+  },
 
   {
     "name": "PV1 Energy - Today",
@@ -794,10 +804,12 @@ SENSORS = [
     "divider": 10,
     "unique_name": "mqtt_065",
   },
-  #mqtt_66 - PV3 Voltage
-  #mqtt_67 - PV3 Current
-  #mqtt_68 - PV3 Power
-  #mqtt_69 - PV3 Energy - Today
-  #mqtt_70 - PV3 Energy - Total
+  #mqtt_066 - PV3 Voltage
+  #mqtt_067 - PV3 Current
+  #mqtt_068 - PV3 Power
+  #mqtt_069 - PV3 Energy - Today
+  #mqtt_070 - PV3 Energy - Total
+  #mqtt_071 - Self-Consumption (Solar + Battery) Energy - Total (pvenergytotal)
+
 ]
 
