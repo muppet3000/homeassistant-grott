@@ -656,7 +656,7 @@ SENSORS = [
     "unique_name": "mqtt_049",
   },
   {
-    "name": "Statement of Charge",
+    "name": "State of Charge",
     "device_class": SensorDeviceClass.BATTERY,
     "unit_of_measurement": PERCENTAGE,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -857,7 +857,7 @@ SENSORS = [
 
   #BMS values, relevant for 'min' systems
   {
-    "name": "Statement of Charge",
+    "name": "State of Charge",
     "device_class": SensorDeviceClass.BATTERY,
     "unit_of_measurement": PERCENTAGE,
     "state_class": SensorStateClass.MEASUREMENT,
