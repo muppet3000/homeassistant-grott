@@ -883,7 +883,7 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:home-battery",
     "func": lambda js: js['values']["bms_batterycurr"],
-    "divider": 10,
+    "divider": 100,
     "unique_name": "mqtt_080",
   },
   {
