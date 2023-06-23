@@ -641,7 +641,7 @@ SENSORS = [
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:battery-arrow-up",
-    "func": lambda js: js['values']["p1charge1"],
+    "func": lambda js: js['values']["pcharge1"],
     "divider": 10,
     "unique_name": "mqtt_048",
   },
