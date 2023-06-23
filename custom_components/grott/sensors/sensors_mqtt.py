@@ -636,7 +636,7 @@ SENSORS = [
     "unique_name": "mqtt_047",
   },
   {
-    "name": "Battery Charging Power",
+    "name": "Battery Charging Power", #SPH systems
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -645,6 +645,17 @@ SENSORS = [
     "divider": 10,
     "unique_name": "mqtt_048",
   },
+  {
+    "name": "Battery Charging Power", #SPA/AC Couple systems
+    "device_class": SensorDeviceClass.POWER,
+    "unit_of_measurement": UnitOfPower.WATT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:battery-arrow-up",
+    "func": lambda js: js['values']["pcharge1"],
+    "divider": 10,
+    "unique_name": "mqtt_086",
+  },
+
   {
     "name": "Battery Voltage",
     "device_class": SensorDeviceClass.VOLTAGE,
@@ -951,6 +962,6 @@ SENSORS = [
   #mqtt_074 - PV4 Power
   #mqtt_075 - PV4 Energy - Today
   #mqtt_076 - PV4 Energy - Total
-
+  #mqtt_086 - Battery Charging Power (AC Coupled)
 ]
 
