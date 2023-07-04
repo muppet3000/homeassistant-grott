@@ -1,6 +1,8 @@
 """Sensor descriptions for Growatt systems - Raw MQTT values."""
-
 from __future__ import annotations
+
+import datetime
+
 from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.const import (
     PERCENTAGE,
@@ -13,6 +15,7 @@ from homeassistant.const import (
     UnitOfTime,
 )
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
+from homeassistant.util import dt
 
 from ..const import (
     BATTERY_TYPES
@@ -23,6 +26,11 @@ def battery_type_lookup(mqtt_data):
   if batt_type > 1:
     batt_type = 2
   return BATTERY_TYPES[int(batt_type)]
+
+def datetime_formatter(mqtt_data):
+  last_updated_time_string = mqtt_data['time']
+  last_updated_date_time = dt.parse_datetime(last_updated_time_string)
+  return datetime.datetime.combine(last_updated_date_time.date(), last_updated_date_time.time(), dt.DEFAULT_TIME_ZONE)
 
 SENSORS_LABEL="raw_mqtt_sensors"
 
@@ -1073,6 +1081,18 @@ SENSORS = [
     "divider": 10,
     "unique_name": "mqtt_098",
   },
+
+  {
+    "name": "Last data update",
+    "device_class": SensorDeviceClass.TIMESTAMP,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "entity_category": EntityCategory.DIAGNOSTIC,
+    "icon": "mdi:information-outline",
+    "func": datetime_formatter,
+    "unique_name": "mqtt_099",
+  },
+
 
   #The following entries are out-of-order in the above list, be sure to check for the latest value for unique_name from both lists
   #mqtt_066 - PV3 Voltage
