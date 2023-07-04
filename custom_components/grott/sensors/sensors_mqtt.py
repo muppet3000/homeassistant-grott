@@ -313,7 +313,7 @@ SENSORS = [
   },
  
   {
-    "name": "Self-Consumption (Solar + Battery) Energy - Today (eactoday)",
+    "name": "Power Geneartion - Today (eactoday)",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -323,7 +323,7 @@ SENSORS = [
     "unique_name": "mqtt_023",
   },
   {
-    "name": "Self-Consumption (Solar + Battery) Energy - Today (pvenergytoday)",
+    "name": "Power Generation - Today (pvenergytoday)",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
@@ -333,7 +333,7 @@ SENSORS = [
     "unique_name": "mqtt_024",
   },
   {
-    "name": "Self-Consumption (Solar + Battery) Energy - Total (eactotal)",
+    "name": "Power Generation - Total (eactotal)",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -343,7 +343,7 @@ SENSORS = [
     "unique_name": "mqtt_025",
   },
   {
-    "name": "Self-Consumption (Solar + Battery) Energy - Total (pvenergytotal)",
+    "name": "Power Generation - Total (pvenergytotal)",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
@@ -956,7 +956,7 @@ SENSORS = [
   #mqtt_068 - PV3 Power
   #mqtt_069 - PV3 Energy - Today
   #mqtt_070 - PV3 Energy - Total
-  #mqtt_071 - Self-Consumption (Solar + Battery) Energy - Total (pvenergytotal)
+  #mqtt_071 - Power Generation - Total (pvenergytotal)
   #mqtt_072 - PV4 Voltage
   #mqtt_073 - PV4 Current
   #mqtt_074 - PV4 Power
