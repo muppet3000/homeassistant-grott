@@ -1022,7 +1022,7 @@ SENSORS = [
   },
 
   {
-    "name": "Phase1 Import from Grid Power",
+    "name": "Phase1 Actual Power",
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -1032,7 +1032,7 @@ SENSORS = [
     "unique_name": "mqtt_093",
   },
   {
-    "name": "Phase2 Import from Grid Power",
+    "name": "Phase2 Actual Power",
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -1042,7 +1042,7 @@ SENSORS = [
     "unique_name": "mqtt_094",
   },
   {
-    "name": "Phase3 Import from Grid Power",
+    "name": "Phase3 Actual Power",
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
@@ -1052,7 +1052,7 @@ SENSORS = [
     "unique_name": "mqtt_095",
   },
   {
-    "name": "Import from Grid Power",
+    "name": "Actual Power",
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
