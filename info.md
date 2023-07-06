@@ -1,7 +1,7 @@
 # Grott (grott)
 This custom component (installable via HACS) is designed to integrate with an installation of Grott and will display metrics pushed via MQTT.
 
-This integration is designed to replace the use of the [growatt-server-api](https://github.com/muppet3000/homeassistant-growatt_server_api) Integration which has had numerous problems due to API instability)
+This integration is designed to replace the use of the [growatt-server-api](https://github.com/muppet3000/homeassistant-growatt_server_api) integration (which has had numerous problems due to API instability).
 
 NOTE - While it is probably possible to run both this Integration and the `growatt-server-api` integration at the same time, it is not advised. I recommend disabling the previous integration to avoid clashes.
 
