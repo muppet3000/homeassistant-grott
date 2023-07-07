@@ -1093,6 +1093,36 @@ SENSORS = [
     "unique_name": "mqtt_099",
   },
 
+  {
+    "name": "Phase1 Power factor",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["powerfactor_l1"],
+    "divider": 10,
+    "unique_name": "mqtt_100",
+  },
+  {
+    "name": "Phase2 Power factor",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["powerfactor_l2"],
+    "divider": 10,
+    "unique_name": "mqtt_101",
+  },
+  {
+    "name": "Phase3 Power factor",
+    "device_class": None,
+    "unit_of_measurement": None,
+    "state_class": None,
+    "icon": "mdi:information-outline",
+    "func": lambda js: js['values']["powerfactor_l3"],
+    "divider": 10,
+    "unique_name": "mqtt_102",
+  },
 
   #The following entries are out-of-order in the above list, be sure to check for the latest value for unique_name from both lists
   #mqtt_066 - PV3 Voltage
