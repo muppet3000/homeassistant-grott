@@ -5,7 +5,7 @@ This is a condensed version of what I use myself, docker simplifies the whole pr
 1. Install docker & docker-compose (if you've come this far, you know how to use Google)
 2. Copy the docker-compose directory from examples in this repo (download all the files): [here](../../examples/docker-compose)
 3. Change into the directory
-4. Run `docker-compose up -d` or if you want to run it in foreground mode and be swamped by output: `docker-compose up`
+4. Run `docker compose up -d` or if you want to run it in foreground mode and be swamped by output: `docker compose up`
 
 ## Extra steps
 Even when using docker-compose to simplify things, you still need to follow the manual steps of the setup process:
