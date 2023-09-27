@@ -1,5 +1,5 @@
 # Setup - Grott
-Grott is the key part of the setup, it is what intercepts the data that would typically flow directly to the Growatt servers and allows it to be diverted to Home Assistant before also forwarding on to the Growatt server website (meaning that the ShinePhone app etc still works). For more information on how Grott works, see a brief overview [here](docs/info/grott.md).
+Grott is the key part of the setup, it is what intercepts the data that would typically flow directly to the Growatt servers and allows it to be diverted to Home Assistant before also forwarding on to the Growatt server website (meaning that the ShinePhone app etc still works). For more information on how Grott works, see a brief overview [here](../info/grott.md).
 
 Grott can be run in 2 ways:
 1. Docker
