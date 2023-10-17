@@ -10,7 +10,7 @@ The instructions on this site describe the process for a ShineLan Box, if anyone
 1. Once you know its IP address enter it into your browser and you'll find something like this:
 <kbd>![image](https://user-images.githubusercontent.com/10612068/212528884-f7d7c44e-6a98-47f7-931c-fc035c3a4f5d.png)</kbd>
 
-1. Enter the credentials (admin/admin by default), and you'll be shown the Datalogger information page, from here click on `Network Setting`:
+1. Enter the credentials (admin/admin by default, or admin/"CC-Code" at the back of your ShineLanBox), and you'll be shown the Datalogger information page, from here click on `Network Setting`:
 <kbd>![image](https://user-images.githubusercontent.com/10612068/212528973-f2a5f248-2211-4154-b5aa-f272b5967985.png)</kbd>
 
 1. On the Network Settings page change the `ResolvDomain` to `Off` and the `Server IP` to the IP address of the machine running the Grott application/service.
