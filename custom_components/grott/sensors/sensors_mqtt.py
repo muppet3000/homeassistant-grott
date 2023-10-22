@@ -1448,7 +1448,7 @@ SENSORS = [
     "icon": "mdi:home-lightning-bolt",
     "func": lambda js: js['values']["eacDischarTotal"],
     "divider": 10,
-    "unique_name": "mqtt_132",
+    "unique_name": "mqtt_133",
   },
   {
     "name": "AC Discharge (Load Consumption) Power",
@@ -1458,7 +1458,7 @@ SENSORS = [
     "icon": "mdi:home-lightning-bolt",
     "func": lambda js: js['values']["ACDischarWatt"],
     "divider": 10,
-    "unique_name": "mqtt_133",
+    "unique_name": "mqtt_134",
   },
   {
     "name": "Battery Power",
@@ -1468,7 +1468,7 @@ SENSORS = [
     "icon": "mdi:battery",
     "func": lambda js: js['values']["BatWatt"],
     "divider": 10,
-    "unique_name": "mqtt_134",
+    "unique_name": "mqtt_135",
   },
 
 
