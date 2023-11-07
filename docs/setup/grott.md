@@ -4,7 +4,7 @@ Grott is the key part of the setup, it is what intercepts the data that would ty
 Grott can be run in 3 ways:
 1. Docker
 2. Python application
-3. Grott add-on at https://github.com/egguy/ha-addons/tree/main
+3. [Grott add-on](https://github.com/egguy/ha-addons/tree/main)
 
 How to run all three options are listed below. NOTE - Until you have a valid configuration file from the [configuration](#configuration) section Grott will not start correctly.
 
@@ -30,9 +30,9 @@ This add on has a stable and beta branch, read the guidelines over which to use 
 
 Follow the instructions to install the grott add-on.
 
-Take note of the specific instructions here https://github.com/egguy/addon-grott/blob/main/grott/DOCS.md#compatibility-with-homeassistant-grott about checking: *Enable grott MQTT* and to deactivate the *Home Assistant plugin* in the configuration. This can lead to duplicate sensors otherwise.
+Take note of the specific instructions [here](https://github.com/egguy/addon-grott/blob/main/grott/DOCS.md#compatibility-with-homeassistant-grott) about checking: *Enable grott MQTT* and to deactivate the *Home Assistant plugin* in the configuration. This can lead to duplicate sensors otherwise.
 
-Then you should have a working Grott server running as an add-on to HA and the IP address of the HA instance will be the destination IP address to re-point your datalogger to (see https://github.com/egguy/addon-grott/blob/main/grott/DOCS.md#configuration-of-the-wi-fi-logger )
+Then you should have a working Grott server running as an add-on to HA and the IP address of the HA instance will be the destination IP address to re-point your datalogger to (see [here](https://github.com/egguy/addon-grott/blob/main/grott/DOCS.md#configuration-of-the-wi-fi-logger))
 
 Then you can proceed to install the grott integration, and ignore the Configuration step below...
 
