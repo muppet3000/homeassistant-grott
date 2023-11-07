@@ -28,7 +28,7 @@ Adapted from [here](https://github.com/johanmeijer/grott/wiki/@-First-time-insta
 ## Grott add-on 
 This add on has a stable and beta branch, read the guidelines over which to use to suit your needs. 
 
-Follow the instructions to install the grott add-on.
+Follow the instructions to install the grott add-on (https://github.com/egguy/ha-addons)
 
 Take note of the specific instructions [here](https://github.com/egguy/addon-grott/blob/main/grott/DOCS.md#compatibility-with-homeassistant-grott) about checking: *Enable grott MQTT* and to deactivate the *Home Assistant plugin* in the configuration. This can lead to duplicate sensors otherwise.
 
