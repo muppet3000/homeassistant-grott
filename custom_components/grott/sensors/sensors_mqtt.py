@@ -1417,7 +1417,7 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["OP_Curr"],
-    "divider": 100,
+    "divider": 10,
     "unique_name": "mqtt_130",
   },
   {
@@ -1427,7 +1427,7 @@ SENSORS = [
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:flash",
     "func": lambda js: js['values']["Inv_Curr"],
-    "divider": 100,
+    "divider": 10,
     "unique_name": "mqtt_131",
   },
   {
