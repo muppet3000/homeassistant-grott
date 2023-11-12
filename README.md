@@ -32,6 +32,7 @@ This integration can be installed via HACS for Home Assistant
     1. Click 'Download' and follow on-screen instructions
     -->
 1. Once the plugin is installed via HACS configure it just like a normal Home Assistant Integration i.e. from Settings -> Devices & Settings -> Add Integration -> Search for Grott
+1. Make sure your MQTT topic is set to energy/growatt (default in Grott) otherwise the discovery of your data won't work.
 
 or (if you don't want to use HACS)
 
