@@ -1469,6 +1469,16 @@ SENSORS = [
     "func": lambda js: js['values']["BatWatt"],
     "divider": 10,
     "unique_name": "mqtt_135",
+  }, 
+  {
+    "name": "Grid Import Power",
+    "device_class": SensorDeviceClass.POWER,
+    "unit_of_measurement": UnitOfPower.WATT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:home-lightning-bolt",
+    "func": lambda js: js['values']["AC_InWatt"],
+    "divider": 10,
+    "unique_name": "mqtt_136",
   },
 
 
