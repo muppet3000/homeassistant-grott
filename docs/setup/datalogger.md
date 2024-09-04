@@ -32,40 +32,40 @@ To reconfigure your ShineWiFi-X/S datalogger, you need to use the ShinePhone app
    Go to `Me` and select `Datalogger Configuration`.  
    <kbd><img src="https://github.com/user-attachments/assets/b28d743a-232f-4bf7-85b3-0cde6e67886f" height="400"/></kbd>
 
-2. **Add the Datalogger:**  
+1. **Add the Datalogger:**  
    Scan the QR Code on the ShineWiFi-X/S dongle or manually enter the serial number and verification code, then click `Confirm`.  
    <kbd><img src="https://github.com/user-attachments/assets/3b0dce79-2018-4f99-b5d9-622ee64ac1b1" height="400"/></kbd>
    <kbd><img src="https://github.com/user-attachments/assets/23918dfc-6230-452f-9cfe-7a3177e73d2c" height="400"/></kbd>
    <kbd><img src="https://github.com/user-attachments/assets/03b5ec4c-9aab-4adc-9969-e94644744f1d" height="400"/></kbd>
 
-3. **Select Hotspot Mode:**  
+1. **Select Hotspot Mode:**  
    <kbd><img src="https://github.com/user-attachments/assets/0944f11b-a337-4780-81ea-4b6a8d494f80" height="400"/></kbd>
 
-4. **Activate Hotspot Mode:**  
+1. **Activate Hotspot Mode:**  
    Press the datalogger button to enter `Hotspot Mode`. Ensure the `blue LED` on the datalogger is always on. Then select `Next Step`.  
    <kbd><img src="https://github.com/user-attachments/assets/6a6b7386-d809-4715-b2dc-333cff5205b1" height="400"/></kbd>
    <kbd><img src="https://github.com/user-attachments/assets/b664e5c2-8eaf-4afc-8bf9-ce4029b87360" height="400"/></kbd>
 
-5. **Connect to Datalogger's WiFi:**  
+1. **Connect to Datalogger's WiFi:**  
    Connect your mobile phone to the WiFi network with the same name as the `SN` of the datalogger. Go back to the app and select `Next Step`.  
    <kbd><img src="https://github.com/user-attachments/assets/05b2e4cf-d80e-4593-ba62-132bd3ef7d67" height="400"/></kbd>
    <kbd><img src="https://github.com/user-attachments/assets/a21d1e30-eba2-4e9d-819d-bc2407de969b" height="400"/></kbd>
 
-6. **View Current WiFi:**  
+1. **View Current WiFi:**  
    The app will display the current WiFi network the datalogger is connected to. Select `Advanced`.  
    <br>
    <kbd><img src="https://github.com/user-attachments/assets/fa02cdfb-a397-4c22-baa3-cd2572717b9b" height="400"/></kbd>
 
-7. **Adjust Server Settings:**  
+1. **Adjust Server Settings:**  
    Select `Server Settings`, then select it again. Enter the password in the following format: `growattYYYYMMDD`, and press `Unlock`.  
    <kbd><img src="https://github.com/user-attachments/assets/b12c5241-3eca-42dc-85ce-6c18ce8a1c79" height="400"/></kbd>
    <kbd><img src="https://github.com/user-attachments/assets/fe48cd65-3996-491e-9325-82db4f918475" height="400"/></kbd>
 
-8. **Configure Server IP:**  
+1. **Configure Server IP:**  
    Uncheck `Set the domain name`, then enter the IP address of the machine running the Grott application/service into the `Server IP` field. Press `Save` and return to `Datalogger Configuration`.  
    <kbd><img src="https://github.com/user-attachments/assets/1e491a4a-84fa-4ddc-b678-5378f83a9a80" height="400"/></kbd>
 
-9. **Finalize Configuration:**  
+1. **Finalize Configuration:**  
    Select `Configure Immediately` wait 1-2 min and your done.  
    <kbd><img src="https://github.com/user-attachments/assets/0721da90-1e09-4d2a-928e-7d1986b519b6" height="400"/></kbd>
 
