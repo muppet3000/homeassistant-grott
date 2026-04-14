@@ -1095,9 +1095,9 @@ SENSORS = [
 
   {
     "name": "Phase1 Power factor",
-    "device_class": None,
+    "device_class": SensorDeviceClass.POWER_FACTOR,
     "unit_of_measurement": None,
-    "state_class": None,
+    "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["powerfactor_l1"],
     "divider": 1000,
@@ -1105,9 +1105,9 @@ SENSORS = [
   },
   {
     "name": "Phase2 Power factor",
-    "device_class": None,
+    "device_class": SensorDeviceClass.POWER_FACTOR,
     "unit_of_measurement": None,
-    "state_class": None,
+    "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["powerfactor_l2"],
     "divider": 1000,
@@ -1115,9 +1115,9 @@ SENSORS = [
   },
   {
     "name": "Phase3 Power factor",
-    "device_class": None,
+    "device_class": SensorDeviceClass.POWER_FACTOR,
     "unit_of_measurement": None,
-    "state_class": None,
+    "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["powerfactor_l3"],
     "divider": 1000,
@@ -1125,9 +1125,9 @@ SENSORS = [
   },
   {
     "name": "Power factor",
-    "device_class": None,
+    "device_class": SensorDeviceClass.POWER_FACTOR,
     "unit_of_measurement": None,
-    "state_class": None,
+    "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:information-outline",
     "func": lambda js: js['values']["powerfactor"],
     "divider": 1000,
