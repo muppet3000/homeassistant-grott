@@ -644,6 +644,27 @@ SENSORS = [
     "unique_name": "mqtt_047",
   },
   {
+    "name": "Battery Discharging Power", #MOD systems
+    "device_class": SensorDeviceClass.POWER,
+    "unit_of_measurement": UnitOfPower.WATT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:battery-arrow-down",
+    "func": lambda js: js['values']["bdc1_pdischr"],
+    "divider": 10,
+    "unique_name": "mqtt_147",
+  },
+  {
+    "name": "Battery Charging Power", #MOD systems
+    "device_class": SensorDeviceClass.POWER,
+    "unit_of_measurement": UnitOfPower.WATT,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:battery-arrow-up",
+    "func": lambda js: js['values']["bdc1_pchr"],
+    "divider": 10,
+    "unique_name": "mqtt_148",
+  },
+
+  {
     "name": "Battery Charging Power", #SPH systems
     "device_class": SensorDeviceClass.POWER,
     "unit_of_measurement": UnitOfPower.WATT,
@@ -731,7 +752,7 @@ SENSORS = [
     "unit_of_measurement": UnitOfPower.WATT,
     "state_class": SensorStateClass.MEASUREMENT,
     "icon": "mdi:home-lightning-bolt",
-    "func": lambda js: js['values']["plocaloadr"],
+    "func": lambda js: js['values']["ptoloadtotal"],
     "divider": 10,
     "unique_name": "mqtt_053",
   },
@@ -859,7 +880,7 @@ SENSORS = [
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
     "icon": "mdi:home-lightning-bolt",
-    "func": lambda js: js['values']["elocalload_tod"],
+    "func": lambda js: js['values']["eloadtoday"],
     "divider": 10,
     "unique_name": "mqtt_064",
   },
@@ -869,7 +890,7 @@ SENSORS = [
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL,
     "icon": "mdi:home-lightning-bolt",
-    "func": lambda js: js['values']["elocalload_tot"],
+    "func": lambda js: js['values']["eloadtotal"],
     "divider": 10,
     "unique_name": "mqtt_065",
   },
@@ -884,6 +905,16 @@ SENSORS = [
     "func": lambda js: js['values']["bms_soc"],
     "divider": 1,
     "unique_name": "mqtt_078",
+  },
+  {
+    "name": "State of Health",
+    "device_class": SensorDeviceClass.BATTERY,
+    "unit_of_measurement": PERCENTAGE,
+    "state_class": SensorStateClass.MEASUREMENT,
+    "icon": "mdi:home-battery",
+    "func": lambda js: js['values']["bms_soh"],
+    "divider": 1,
+    "unique_name": "mqtt_149",
   },
   {
     "name": "Battery Voltage",
@@ -956,6 +987,28 @@ SENSORS = [
     "divider": 10,
     "unique_name": "mqtt_085",
   },
+  {
+    "name": "Battery AC Charged Energy - Today",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL,
+    "icon": "mdi:battery-arrow-up",
+    "func": lambda js: js['values']["eacchrtoday"],
+    "divider": 10,
+    "unique_name": "mqtt_185",
+  },
+  {
+    "name": "Battery AC Charged Energy - Total",
+    "device_class": SensorDeviceClass.ENERGY,
+    "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
+    "state_class": SensorStateClass.TOTAL,
+    "icon": "mdi:battery-arrow-up",
+    "func": lambda js: js['values']["eacchrtotal"],
+    "divider": 10,
+    "unique_name": "mqtt_186",
+  },
+
+
 
 
   #SDM systems/meters
@@ -1497,5 +1550,12 @@ SENSORS = [
   #mqtt_075 - PV4 Energy - Today
   #mqtt_076 - PV4 Energy - Total
   #mqtt_086 - Battery Charging Power (AC Coupled)
+  #mqtt_147 - Battery Discharging Power ( MOD systems FW 0007 )
+  #mqtt_148 - Battery Charging Power ( MOD system FW 0007 )
+  #mqtt_149 - Battery State of health
+  #mqtt_185 - Battery AC Charged Energy Today ( MOD system FW 0007 )
+  #mqtt_186 - Battery AC Charged Energy Total ( MOD system FW 0007 )
+
 ]
+
 
