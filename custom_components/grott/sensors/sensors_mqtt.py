@@ -321,7 +321,7 @@ SENSORS = [
   },
  
   {
-    "name": "Power Geneartion - Today (eactoday)",
+    "name": "Power Generation - Today (eactoday)",
     "device_class": SensorDeviceClass.ENERGY,
     "unit_of_measurement": UnitOfEnergy.KILO_WATT_HOUR,
     "state_class": SensorStateClass.TOTAL_INCREASING,
